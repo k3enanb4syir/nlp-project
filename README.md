@@ -4,7 +4,7 @@ This repository contains the data acquisition and preprocessing pipeline for Tas
 
 ## Project Team (Team: Miguel!)
 * **Muhammad Keenan Basyir**
-* **[Team Member 2 Name]**
+* **Muhammad Gibran Basyir**
 * **[Team Member 3 Name]**
 
 ## Data Sources
