@@ -5,7 +5,7 @@ This repository contains the data acquisition and preprocessing pipeline for Tas
 ## Project Team (Team: Miguel!)
 * **Muhammad Keenan Basyir**
 * **Muhammad Gibran Basyir**
-* **[Team Member 3 Name]**
+* **Thomas Nadandra Aryawida**
 
 ## Data Sources
 1. **The GDELT Project (Global Database of Events, Language, and Tone):** Provides continuous, 24/7 unstructured global news parsed into quantifiable geopolitical metrics (e.g., `EventCode`, `AvgTone`). Sourced via Google Cloud BigQuery to ensure a robust 5-year historical extraction without triggering web-scraping rate limits.
