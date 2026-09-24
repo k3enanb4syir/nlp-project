@@ -1,0 +1,23 @@
+# Core data handling
+pandas>=2.2
+numpy>=1.26
+
+# HTTP / scraping
+requests>=2.32
+beautifulsoup4>=4.12
+selenium>=4.20
+
+# NLP feature extraction (lexicon + classical vectorisation only --
+# no pre-trained embeddings or transformers, per Task 2 constraints)
+vaderSentiment>=3.3.2
+nltk>=3.8
+
+# Modelling & evaluation
+scikit-learn>=1.5
+statsmodels>=0.14
+xgboost>=2.1
+
+# EDA / notebooks
+matplotlib>=3.9
+seaborn>=0.13
+jupyter>=1.0
