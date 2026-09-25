@@ -110,8 +110,6 @@ plt.show()
 # That base rate is what every model has to be judged against.
 print("Target: 1 = USD strengthens against IDR (rate rises)")
 print(f"overall UP rate : {daily.direction.mean():.3f}")
-for name, end in [("train", config.TRAIN_END), ("validation", config.VAL_END)]:
-    pass
 
 blocks = {
     "train":      daily[daily.date.dt.date <= config.TRAIN_END],

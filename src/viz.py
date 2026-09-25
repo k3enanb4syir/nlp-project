@@ -27,7 +27,6 @@ Rules followed throughout:
 from __future__ import annotations
 
 import matplotlib as mpl
-import matplotlib.pyplot as plt
 
 # Categorical slots (light mode). Fixed order -- assigned, never cycled.
 BLUE = "#2a78d6"

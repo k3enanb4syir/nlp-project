@@ -73,15 +73,30 @@ import html
 import io
 import json
 import re
-import sys
 import threading
 import time
 import zipfile
-from datetime import date, datetime, timedelta
-from pathlib import Path
+from datetime import date, timedelta
 
 import pandas as pd
 import requests
+
+try:
+    from config import (
+        GDELT_CACHE_DIR,
+        GDELT_RAW_CSV,
+        GDELT_SAMPLE_CSV,
+        STUDY_END,
+        STUDY_START,
+    )
+except ImportError:  # pragma: no cover
+    from src.config import (
+        GDELT_CACHE_DIR,
+        GDELT_RAW_CSV,
+        GDELT_SAMPLE_CSV,
+        STUDY_END,
+        STUDY_START,
+    )
 
 # GKG rows carry very large fields (the GCAM vector, the extras XML blob).
 csv.field_size_limit(10**9)
@@ -90,9 +105,9 @@ csv.field_size_limit(10**9)
 # Configuration
 # --------------------------------------------------------------------------
 
-# Study window mandated by Task 1: 1 Sep 2021 -- 1 Sep 2026 inclusive.
-START_DATE = date(2021, 9, 1)
-END_DATE = date(2026, 9, 1)
+# The study window (STUDY_START / STUDY_END) and every output path come from
+# src/config.py, so the scraper cannot drift out of step with the rest of the
+# pipeline.
 
 # Fixed daily sampling time (UTC). See "SAMPLING DESIGN" above.
 SAMPLE_TIME = "120000"
@@ -101,11 +116,6 @@ SAMPLE_TIME = "120000"
 FALLBACK_TIMES = ["114500", "121500", "113000", "123000"]
 
 BASE_URL = "http://data.gdeltproject.org/gdeltv2/{stamp}.gkg.csv.zip"
-
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-CACHE_DIR = PROJECT_ROOT / "data" / "raw" / "gdelt_daily"
-RAW_OUTPUT = PROJECT_ROOT / "data" / "raw" / "gdelt_articles_raw.csv.gz"
-SAMPLE_OUTPUT = PROJECT_ROOT / "data" / "raw" / "sample_gdelt_articles.csv"
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; NLP-coursework-research/1.0)"}
 
@@ -354,12 +364,12 @@ _print_lock = threading.Lock()
 
 def scrape_all(workers: int) -> None:
     """Download every day's snapshot in parallel, caching each day as JSON."""
-    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    GDELT_CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
-    all_days = list(_daterange(START_DATE, END_DATE))
-    pending = [d for d in all_days if not (CACHE_DIR / f"{d.isoformat()}.json").exists()]
+    all_days = list(_daterange(STUDY_START, STUDY_END))
+    pending = [d for d in all_days if not (GDELT_CACHE_DIR / f"{d.isoformat()}.json").exists()]
 
-    print(f"Study window  : {START_DATE} -> {END_DATE} ({len(all_days)} days)")
+    print(f"Study window  : {STUDY_START} -> {STUDY_END} ({len(all_days)} days)")
     print(f"Already cached: {len(all_days) - len(pending)}")
     print(f"To fetch      : {len(pending)}  (workers={workers})")
     if not pending:
@@ -381,7 +391,7 @@ def scrape_all(workers: int) -> None:
         return local.session
 
     def work(day: date):
-        target = CACHE_DIR / f"{day.isoformat()}.json"
+        target = GDELT_CACHE_DIR / f"{day.isoformat()}.json"
         try:
             records = fetch_day(session_for_thread(), day)
         except Exception as exc:
@@ -473,16 +483,16 @@ def consolidate() -> pd.DataFrame:
     because holding ~1M rows as a single DataFrame alongside the per-day frames
     is what pushes a modest machine into swap.
     """
-    if not CACHE_DIR.exists():
-        raise SystemExit(f"No cache directory at {CACHE_DIR}; run the scraper first.")
+    if not GDELT_CACHE_DIR.exists():
+        raise SystemExit(f"No cache directory at {GDELT_CACHE_DIR}; run the scraper first.")
 
-    files = sorted(CACHE_DIR.glob("*.json"))
+    files = sorted(GDELT_CACHE_DIR.glob("*.json"))
     if not files:
         raise SystemExit("Cache is empty; run the scraper first.")
 
-    RAW_OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    if RAW_OUTPUT.exists():
-        RAW_OUTPUT.unlink()
+    GDELT_RAW_CSV.parent.mkdir(parents=True, exist_ok=True)
+    if GDELT_RAW_CSV.exists():
+        GDELT_RAW_CSV.unlink()
 
     total = 0
     empty_days = 0
@@ -495,7 +505,7 @@ def consolidate() -> pd.DataFrame:
         if not rows:
             return
         pd.DataFrame.from_records(rows).to_csv(
-            RAW_OUTPUT,
+            GDELT_RAW_CSV,
             index=False,
             encoding="utf-8",
             mode="w" if not wrote_header else "a",
@@ -528,14 +538,14 @@ def consolidate() -> pd.DataFrame:
     # Task 1 asks for "sample raw data" in the repo; the full pull is large and
     # gitignored, so a small stratified sample is committed alongside it.
     pd.DataFrame.from_records(sample_rows[:3000]).to_csv(
-        SAMPLE_OUTPUT, index=False, encoding="utf-8"
+        GDELT_SAMPLE_CSV, index=False, encoding="utf-8"
     )
 
-    size_mb = RAW_OUTPUT.stat().st_size / 1e6
+    size_mb = GDELT_RAW_CSV.stat().st_size / 1e6
     print(f"Consolidated {len(files)} cached days -> {total:,} article rows")
     print(f"  days with zero relevant articles: {empty_days}")
-    print(f"  full raw : {RAW_OUTPUT}  ({size_mb:.0f} MB gzipped)")
-    print(f"  sample   : {SAMPLE_OUTPUT}")
+    print(f"  full raw : {GDELT_RAW_CSV}  ({size_mb:.0f} MB gzipped)")
+    print(f"  sample   : {GDELT_SAMPLE_CSV}")
     return pd.DataFrame.from_records(sample_rows[:100])
 
 
@@ -543,8 +553,8 @@ def probe(n_days: int) -> None:
     """Fetch a few spread-out days and report filter yield, without caching."""
     session = requests.Session()
     session.headers.update(HEADERS)
-    span = (END_DATE - START_DATE).days
-    picks = [START_DATE + timedelta(days=int(span * i / max(n_days - 1, 1))) for i in range(n_days)]
+    span = (STUDY_END - STUDY_START).days
+    picks = [STUDY_START + timedelta(days=int(span * i / max(n_days - 1, 1))) for i in range(n_days)]
     for day in picks:
         t0 = time.time()
         recs = fetch_day(session, day)
