@@ -106,7 +106,10 @@ def rate_features(df: pd.DataFrame) -> list[str]:
 
 def news_features(df: pd.DataFrame) -> list[str]:
     """Features derived from the news text, themes and entities."""
-    prefixes = ("vader_", "fin_", "theme_", "gdelt_tone")
+    prefixes = (
+        "vader_", "fin_", "theme_", "gdelt_tone",
+        "geo_risk_", "monetary_"
+    )
     cols = [c for c in df.columns if c.startswith(prefixes)]
     cols += [
         c for c in ("n_articles", "n_domains", "has_news",
@@ -114,7 +117,6 @@ def news_features(df: pd.DataFrame) -> list[str]:
         if c in df.columns
     ]
     return cols
-
 
 # --------------------------------------------------------------------------
 # Pipelines
