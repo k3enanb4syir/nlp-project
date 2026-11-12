@@ -1,0 +1,113 @@
+PRESENTATION SCRIPT - SLIDES 7 TO 12
+Global Geopolitical Event Prediction: Impact on USD/IDR Exchange Rates
+Speaker: Thomas Nadandra Aryawida
+Target length: about 45-75 seconds per slide
+
+
+==================================================
+SLIDE 7 - Task 1: Temporal Alignment
+==================================================
+
+"Once the data was cleaned, we still had one problem to solve before modelling: timing.
+
+News comes out every day, including weekends and holidays. The JISDOR rate is only published on trading days. So we have to decide which trading day each article belongs to.
+
+Our rule is simple: each article is matched to the first trading day STRICTLY AFTER the day it was published.
+
+You can see how this works in the table. News from Monday goes to Tuesday's rate. News from Friday, Saturday or Sunday all goes to Monday. News from a public holiday goes to the next day the market is open.
+
+Why strictly after, and not the same day? Bank Indonesia sets the JISDOR rate at about 10 a.m. Jakarta time. Our GDELT snapshot is taken at 12:00 UTC, which is 7 p.m. in Jakarta, so it always comes after that day's rate is set. If we matched Monday's news to Monday's rate, we would be using news written after the rate was fixed to 'predict' it. That's data leakage. The 'strictly after' rule makes sure the model only sees news that was actually available before the rate it is predicting."
+
+
+==================================================
+SLIDE 8 - Temporal Alignment (code)
+==================================================
+
+"This is the code in preprocessing.py that applies the rule.
+
+We use pandas merge_asof. On the left are the articles, keyed by their publication date, query_date. On the right is the list of trading days.
+
+Two arguments matter here:
+  - direction="forward" means each article looks forward in time for the nearest trading day.
+  - allow_exact_matches=False enforces the 'strictly after' rule. An article can't be matched to a trading day on its own date, even if that date is a trading day.
+
+So the leakage protection comes down to one line of code, and anyone can check it. We added it deliberately: our earlier version matched news to its own calendar date, which caused exactly the leakage problem I just described."
+
+
+==================================================
+SLIDE 9 - Task 1: Final Dataset
+==================================================
+
+"Here is the dataset we ended up with after all of Task 1.
+
+We collected 1,827 calendar days, which is the full five years. That gave us about 926,000 raw relevant articles.
+
+After the relevance filter, the publisher whitelist and de-duplication, we kept 53,887 articles. That's a big cut, and it's on purpose. We wanted fewer, higher-quality articles from established national and international outlets, not lots of small local news.
+
+53,843 of those were aligned. The 44 that dropped out were published after the last rate in our data, so there was no next trading day to match them to.
+
+On the market side, we have 1,202 JISDOR trading days. 99% of them have at least one news article, with an average of about 45 articles per day. So the news signal is dense and consistent across the whole period. This is the dataset we used for Task 2."
+
+
+==================================================
+SLIDE 10 - From Task 1 to Task 2
+==================================================
+
+"To connect the two halves of the project:
+
+Task 1 was about BUILDING the dataset. We collected the GDELT news and the JISDOR rates, cleaned and filtered both, and aligned the news to trading days.
+
+Task 2 is about USING that dataset to make predictions. We turn the news into NLP features and build features from past exchange rates. Then we split the data chronologically: we train on September 2021 to February 2025, validate on March to November 2025, and test on the period after that. Finally we train and evaluate the models.
+
+We split by time instead of shuffling because a shuffled split would let the model learn from the future and be tested on the past. That's the same kind of leakage we avoided in the alignment step."
+
+
+==================================================
+SLIDE 11 - Task 2: Prediction Task
+==================================================
+
+"So what exactly are we predicting?
+
+We frame it as binary classification: will the USD/IDR rate go up on the next trading day, or not?
+
+  - A label of 1 means the rate went up, so the dollar got more expensive against the rupiah.
+  - A label of 0 means it went down or stayed the same.
+
+The formula shows this. r_t is the return into day t. If it's positive, y is 1. Otherwise, y is 0.
+
+We chose direction over the exact rate for three reasons. First, it's easier to evaluate in a meaningful way. Second, it answers our research question directly: does geopolitical news tell us which way the rupiah will move? Third, it lets us compare models that use only rates, only news, or both, all on the same metrics."
+
+
+==================================================
+SLIDE 12 - Task 2: Feature Engineering
+==================================================
+
+"Now the features. The NLP features are in four groups.
+
+1. Sentiment. We run VADER on every headline and then summarise each day with the average, the spread, the extremes, and the share of positive and negative headlines. The spread matters because a day where the press is split is different from a day where it's uniformly negative.
+
+2. Lexicons. We built our own word lists for financial language, geopolitical risk words like war, sanctions, escalation, and monetary policy words like Fed, rate hike, hawkish. They follow the same idea as Loughran-McDonald: general sentiment tools mis-score financial language.
+
+3. Structured news from GDELT itself. That's the share of articles in each theme family, such as conflict, sanctions, trade and monetary policy. We also use entity density, meaning how many people, organisations and places are mentioned, plus news volume and the number of distinct publishers.
+
+4. Text representation. A TF-IDF over each day's headlines, with 300 features covering single words and two-word phrases. It's fitted on the training period only, so the vocabulary from the test period doesn't leak in.
+
+On the right are the exchange-rate features: lagged returns from 1 to 10 days back, rolling volatility and momentum over 5-, 10- and 21-day windows, distance from the moving average, the previous day's direction, and day of the week. Every one of these uses data up to the day BEFORE the one we're predicting.
+
+Last point: as the task requires, we use no pretrained embeddings or transformers. Everything is a lexicon or a classical statistic.
+
+Next, [teammate] will walk you through the models and the results."
+
+
+==================================================
+ANSWERS FOR LIKELY QUESTIONS
+==================================================
+
+Q: Why only headlines, not the full article text?
+A: Every GDELT record has a headline, but full text isn't always available. Scraped article bodies are also mostly boilerplate, and we care about the overall mood across many articles each day more than detail in any single one.
+
+Q: Why drop 94% of the raw articles?
+A: Most of the raw GDELT pull is small local outlets. They cover politics, but that coverage doesn't move currency markets, and the sheer volume drowns out the outlets that do.
+
+Q: Could the 12:00 UTC snapshot still leak?
+A: No. 12:00 UTC is 7 p.m. in Jakarta, well after the 10 a.m. fixing, so the snapshot is always taken after that day's rate is set. That's why each article is matched to the NEXT trading day.

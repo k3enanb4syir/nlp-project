@@ -511,13 +511,14 @@ print(rate_up.round(3).to_string())
    collapsing to one class — but the MCC values are all below 0.08, which is
    close to noise for a 176-day test block.
 
-3. **Adding NLP features did not produce a reliable improvement.** The combined
-   models moved accuracy slightly down and MCC slightly up relative to their
-   rate-only counterparts. With this sample size, neither movement is
-   distinguishable from chance.
+3. **Adding NLP features did not produce a reliable improvement.** The effect
+   depends on the model: news helped the tree model (`xgb_rates` → `xgb_combined`,
+   MCC 0.032 → 0.078) and hurt the linear one (`logreg_rates` → `logreg_combined`,
+   MCC 0.053 → 0.007). Opposite moves of similar size are what noise looks like;
+   with this sample size neither is distinguishable from chance.
 
 4. **TF-IDF overfits badly.** `logreg_tfidf` was the weakest model on test
-   (accuracy 0.472, MCC −0.112) despite competitive validation numbers. 300
+   (accuracy 0.483, MCC −0.088) despite competitive validation numbers. 300
    vocabulary features against 828 training days is far too many degrees of
    freedom, and the influential-terms list is dominated by period-specific proper
    nouns rather than transferable economic vocabulary.

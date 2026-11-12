@@ -20,8 +20,8 @@ Covers **Task 1** (data acquisition, preprocessing and temporal alignment) and
 Across a strictly chronological five-year split, **no model beat the
 majority-class baseline on test directional accuracy** (best 0.568 vs a 0.580
 baseline). On balanced metrics several models showed weak but non-zero skill
-(best MCC 0.077). Adding NLP features to the rate-only baseline did not produce a
-reliable improvement.
+(best MCC 0.078). Adding NLP features to the rate-only baseline did not produce a
+reliable improvement: it helped the tree model and hurt the linear one.
 
 This is the expected regime for daily FX direction, and establishing it with a
 leakage-free pipeline — one that would have surfaced a strong signal had one
@@ -121,13 +121,13 @@ Test block (2025-12-01 → 2026-09-01, 176 sessions; 58.0% UP days):
 |---|---|---|---|
 | majority (constant UP) | **0.580** | 0.367 | 0.000 |
 | logreg_rates | 0.568 | 0.498 | 0.053 |
+| xgb_combined | 0.562 | 0.535 | **0.078** |
 | arima(1,0,1) | 0.557 | 0.533 | 0.071 |
-| persistence | 0.551 | **0.539** | **0.077** |
+| persistence | 0.551 | **0.539** | 0.077 |
 | xgb_rates | 0.551 | 0.503 | 0.032 |
-| logreg_combined | 0.545 | 0.532 | 0.064 |
-| xgb_combined | 0.540 | 0.516 | 0.036 |
-| logreg_news | 0.517 | 0.504 | 0.007 |
-| logreg_tfidf | 0.472 | 0.441 | −0.112 |
+| logreg_combined | 0.534 | 0.497 | 0.007 |
+| logreg_news | 0.511 | 0.499 | −0.003 |
+| logreg_tfidf | 0.483 | 0.453 | −0.088 |
 
 Accuracy alone is misleading — the constant predictor tops it while having zero
 discriminative power (MCC 0). MCC and macro-F1 are the metrics that separate the
