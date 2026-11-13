@@ -116,3 +116,19 @@ SBERT_MODEL = "sentence-transformers/all-mpnet-base-v2"
 # almost nothing. The count actually truncated is logged at encode time.
 TRANSFORMER_MAX_LENGTH = 128
 EMBED_BATCH_SIZE = 64
+
+# --------------------------------------------------------------------------
+# Task 3 -- channel axes, novelty and daily pooling (src/semantic_axes.py)
+# --------------------------------------------------------------------------
+# One small CSV per encoder, one row per trading session. Small and costly to
+# regenerate without a GPU, so these ARE committed.
+TEXT_FEATURES_DIR = CLEANED_DIR / "text_features"
+# Per session and channel, only the K headlines most relevant to the channel's
+# topic contribute to its direction score (~10% of a typical 45-headline day).
+AXIS_TOP_K = 5
+# Headline novelty compares each headline with those of the previous N sessions.
+NOVELTY_LOOKBACK_SESSIONS = 5
+# Half-life (sessions) of the decayed memory used by centroid novelty.
+NOVELTY_MEMORY_HALFLIFE = 2.0
+# Anchor split-half reliability: number of random 5-vs-5 splits.
+SPLIT_HALF_REPEATS = 50

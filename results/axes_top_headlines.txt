@@ -1,0 +1,343 @@
+===== glove =====
+
+[dollar]  most relevant: Gold prices dips as dollar gains, investors await US inflation data
+[dollar]  USD/IDR-up pole (among top-300 relevant):
+   +0.129  Stock market today Global shares rise, buoyed by Wall Street rally from bonds and lower oil pri
+   +0.127  S P Futures Climb Ahead of Key U.S. Inflation Data, Intel Surges on Upbeat Earnings
+   +0.119  European Stocks Build on Record Highs After ECB Meeting. Asian Indexes Also Rise.
+   +0.119  Stock Market News Today US Futures Gain Ahead of More Inflation Data
+[dollar]  USD/IDR-down pole:
+   -0.295  BoE says global investors' appetite for risk is falling sharply
+   -0.259  USD JPY falls further on the day amid softer dollar, Kuroda jawboning
+   -0.232  The Dollar's Steepest Slump in Over a Decade Is Stalling on Fed Rate View
+   -0.227  GBP USD pares losses on the day as the volatility swings continue
+
+[risk]  most relevant: European markets lower after Credit Suisse unease sparks fresh selloff in world stocks
+[risk]  USD/IDR-up pole (among top-300 relevant):
+   +0.193  Cifi defaults on bond, triggering sell-off of developers, fears Chinese property debt crisis is
+   +0.192  German Industrial Slump Raises Recession Worries
+   +0.189  Could a housing slump threaten the stock market and the entire economy?
+   +0.176  Worsening euro zone business downturn reignites recession fears
+[risk]  USD/IDR-down pole:
+   -0.338  Treasury yields hold steady as investors await a look at inflation expectations
+   -0.311  Equities ride tech to third week of gains, dollar dips
+   -0.308  Equities gain as investors await US inflation numbers
+   -0.301  Stock market today World shares mixed after Wall St buoyed by easing pressure on bonds
+
+[fed]  most relevant: Mortgage demand rises ahead of Fed decision on rates
+[fed]  USD/IDR-up pole (among top-300 relevant):
+   +0.276  BOE Might Be More Worried About Growth Risks Than Inflation
+   +0.265  UK Interest Rates Why Mortgage Costs are Complicating the BOE's Inflation Fight
+   +0.262  Inflation high in October as Fed rate hikes continue
+   +0.257  Bitcoin takes a hit on interest rate hike fears
+[fed]  USD/IDR-down pole:
+   -0.159  Fed Chair Powell Silent As Bond Markets See Recession, Rate Cuts
+   -0.143  Stock Markets Today Powell, Rate Cuts
+   -0.077  Dow, S P, Nasdaq futures rise as Fed reaffirms rate cut outlook, leans dovish
+   -0.074  World shares lower as strong data hit hopes for dovish Fed
+
+[geo]  most relevant: Israeli forces push deeper into Gaza City as Hamas warns escalation threatens ceasefire ta
+[geo]  USD/IDR-up pole (among top-300 relevant):
+   +0.393  Sudan crisis Air strikes launched against paramilitaries as clashes escalate
+   +0.368  Houthis cause havoc as attacks in support of Palestine escalate
+   +0.364  Iran-Israel attacks Markets watch for dangers of further escalation
+   +0.361  Ukraine says Russia resorting to gas blackmail and threat of nuclear disaster as heaving fighti
+[geo]  USD/IDR-down pole:
+   -0.316  Zelenskyy Ukraine seeking peace 'without delay' in talks
+   -0.306  Negotiators in Vienna will try to revive the Iran nuclear agreement
+   -0.294  Ukraine-Russia war latest Putin ready to negotiate with Zelensky 'if necessary' amid US peace t
+   -0.271  Fresh Israel-Hamas talks expected on freeing hostages in exchange for ceasefire
+
+[oil]  most relevant: Oil prices drop as US crude inventories jump, fuel demand worries
+[oil]  USD/IDR-up pole (among top-300 relevant):
+   +0.103  Oil Briefly Spikes at More Than $80 a Barrel
+   +0.086  Oil rises as natural gas hits 6-week high
+   +0.072  Energy stocks in broad rally after crude oil jumps in wake of Russia's moves to secure Ukraine 
+   +0.052  Oil Prices Up After Iran Strikes Israel
+[oil]  USD/IDR-down pole:
+   -0.347  USD CAD falls further amid weak US Dollar, recovery in oil prices
+   -0.329  Oil prices slide on gloomy global manufacturing data
+   -0.326  China's economy takes hit from global slowdown as exports weaken
+   -0.323  Commodities Update Gold eases on dollar strength Wheat slowly recovers Copper falls on supply w
+
+[em]  most relevant: Asian bonds gain solid inflows on rate cut hopes amid US inflation concerns News on Market
+[em]  USD/IDR-up pole (among top-300 relevant):
+   +0.268  Climate debt-trap risks pushing vulnerable emerging markets to brink
+   +0.231  Cifi defaults on bond, triggering sell-off of developers, fears Chinese property debt crisis is
+   +0.223  World markets tumble and oil prices soar with Russian attack on Ukraine
+   +0.223  Global stock markets sink under global recession fears
+[em]  USD/IDR-down pole:
+   -0.277  Equity fund flows positive for fifth month, market broadening expected
+   -0.249  Rupee appreciates below 82 per dollar amid strong rally in equities, inflow hopes
+   -0.248  Share Market Highlights July 15, 2024 Sensex and Nifty reach new record highs on foreign fund i
+   -0.220  Markets rally for 2nd day on buying in IT stocks, fresh foreign inflows
+
+[trade]  most relevant: China imposes new tariffs on U.S. goods in retaliation
+[trade]  USD/IDR-up pole (among top-300 relevant):
+   +0.434  China's economy takes hit from global slowdown as exports weaken
+   +0.430  Russia Threatens to Intensify Strikes on Ukraine Over US Aid
+   +0.354  War in Ukraine will cripple global food markets
+   +0.338  China launches anti-subsidy probe into EU dairy products as trade spat escalates
+[trade]  USD/IDR-down pole:
+   -0.267  Indonesia to sign trade agreement with Iran next week
+   -0.235  UAE, Serbia initiate negotiations to establish free trade agreement
+   -0.207  China And Ecuador Sign Free Trade Deal
+   -0.199  Indonesia, EU agree on 11 issues during 18th IEU-CEPA negotiations
+
+===== fasttext =====
+
+[dollar]  most relevant: Forex Today US Dollar consolidates gains at multi-month highs as focus remains on geopolit
+[dollar]  USD/IDR-up pole (among top-300 relevant):
+   +0.211  Forex Today US Dollar consolidates gains at multi-month highs as focus remains on geopolitics
+   +0.205  Gold ticks up as dollar rally pauses, Fed rate hike bets curb gains
+   +0.195  Gold pares gains as US dollar strengthens, rate-hike fear dominates mood
+   +0.194  Dollar pares earlier gains in European trading
+[dollar]  USD/IDR-down pole:
+   -0.264  Bitcoin falls to lowest this month with risk of further declines
+   -0.226  Oil falls close to 2022 lows on economic worries, easing supply fears
+   -0.203  Dollar Vs Yuan Renminbi Falls Toward 2023 Low on Economic Weakness
+   -0.196  Japan Market drops on inflation, Ukraine jitters
+
+[risk]  most relevant: Global stock markets sink under global recession fears
+[risk]  USD/IDR-up pole (among top-300 relevant):
+   +0.155  EMERGING MARKETS-Stocks hit near six-week low on China concerns, tech rout
+   +0.130  China stocks down over 1% on Evergrande fallout fears
+   +0.122  Emerging market debt issuance hits record as borrowing costs fall
+   +0.103  Asia, Mideast utilities turn to dirtier fuel as LNG prices bite
+[risk]  USD/IDR-down pole:
+   -0.363  Stock Market Today US Futures Steady Dollar, Bitcoin Hold Recent Gains
+   -0.356  Bond yields climb as traders back away from Fed pivot view after strong jobs report
+   -0.356  Treasury yields hold steady as investors await a look at inflation expectations
+   -0.355  Rally from surprise dovish Fed pivot reverberates through global markets
+
+[fed]  most relevant: FTSE Edges Lower, Rising Inflation Signals BOE Will Raise Rates Despite Recession Risk
+[fed]  USD/IDR-up pole (among top-300 relevant):
+   +0.271  Bitcoin takes a hit on interest rate hike fears
+   +0.264  How Do Higher Interest Rates Push Inflation Down?
+   +0.252  BoE High rate hike expectations to weigh on GBP Commerzbank
+   +0.245  Norway keeps interest rates on hold, eyes December hike
+[fed]  USD/IDR-down pole:
+   -0.188  Fed Pivot Market is Swinging Wildly as Investors Speculate on Powell
+   -0.153  Fed Rate Cuts Portend a 1980s-Style Economic Resurgence
+   -0.144  Charting the Global Economy BOJ Shocks US Inflation Cools
+   -0.144  U.S. Treasury yields as the latest Fed policy meeting is due to begin
+
+[geo]  most relevant: Russia says US troop alert 'escalating tensions'
+[geo]  USD/IDR-up pole (among top-300 relevant):
+   +0.454  In Belgorod, Russia, anti-Putin militia mounts cross-border incursion
+   +0.436  Sudan crisis Air strikes launched against paramilitaries as clashes escalate
+   +0.427  New surrender ultimatum in Mariupol as attacks intensify in east Ukraine
+   +0.407  US military conducts airstrikes against ISIS camps in Syria amid multi-pronged Middle East conf
+[geo]  USD/IDR-down pole:
+   -0.263  Russia and Belarus agree closer energy, economic integration
+   -0.250  Iran's FM says talks with Saudis could restore relations
+   -0.245  Turkey, Armenia agree to press ahead with mending fences
+   -0.245  EU wants to improve ties with Gulf states and ease Iran tensions
+
+[oil]  most relevant: Crude oil slumps on demand concerns amid rising rates offset supply cuts
+[oil]  USD/IDR-up pole (among top-300 relevant):
+   +0.287  Natural Gas rallies as severe heatwave fuels Middle-East demand
+   +0.162  Energy outlook Oil and gas markets to tighten on lack of upstream spending
+   +0.151  Oil prices edge up on U.S. storm and Israel-Iran fears
+   +0.135  Asia Distillates Gasoil cash premiums, cracks gain on tighter supplies
+[oil]  USD/IDR-down pole:
+   -0.348  USD CAD falls further amid weak US Dollar, recovery in oil prices
+   -0.342  Commodities Update Gold eases on dollar strength Wheat slowly recovers Copper falls on supply w
+   -0.334  Oil prices drop amid China Covid curbs
+   -0.287  U.S. oil benchmark extends fall below $80 on recession fears, surging dollar
+
+[em]  most relevant: Investors see Japanese equities shining brighter on attractive valuations
+[em]  USD/IDR-up pole (among top-300 relevant):
+   +0.179  Global bond sell-off deepens as Fed steps up tightening rhetoric
+   +0.136  Chinese property giant Country Garden's shares sink on default fears
+   +0.109  Zimbabwe Imposes Capital Controls to Stem Currency's Slide
+   +0.108  Forex Today Markets reassess Fed's stance amid SVB collapse
+[em]  USD/IDR-down pole:
+   -0.414  CANADA STOCKS-TSX climbs to record high as investors seize 'buying opportunity'
+   -0.358  Hedge funds pick up the pace buying commodity-sensitive stocks NYSEARCA XLB
+   -0.356  Economic Survey 2024 has cues on valuation, portfolios and derivatives for the discerning inves
+   -0.333  U.S. Is Top Investment Destination Despite Falling Inflows
+
+[trade]  most relevant: China and Europe agree to discuss export controls in effort to dial down trade tension
+[trade]  USD/IDR-up pole (among top-300 relevant):
+   +0.464  Oil steadies as China fears counter tighter US supply expectations
+   +0.442  European Stocks Rise, But Steelmakers Drop on Tariff Threat
+   +0.379  Trump targets Canada with tariff threats and trolling
+   +0.377  Iran, Israel and the Rising Tensions in the Caucasus QuickTake
+[trade]  USD/IDR-down pole:
+   -0.360  Indonesia to sign trade agreement with Iran next week
+   -0.349  UAE, Serbia initiate negotiations to establish free trade agreement
+   -0.343  India, Italy for achieving balanced, fair Indo-EU free trade agreement
+   -0.332  Israel, Japan make strides towards free trade agreement
+
+===== finbert =====
+
+[dollar]  most relevant: Dollar Falls and Gold Gains on Weak U.S. Economic News
+[dollar]  USD/IDR-up pole (among top-300 relevant):
+   +0.364  USD JPY extends gains as bond yields also push higher
+   +0.340  Stocks at fresh records even as dollar bounces back
+   +0.335  Dollar nudges higher in European morning trade
+   +0.333  Sterling gets small lift as risk appetite picks up
+[dollar]  USD/IDR-down pole:
+   -0.432  Stock Markets Today US Futures Fall, While Dollar Hits 20-Year Highs
+   -0.378  Dow futures slide nearly 200 points and dollar steamrolls rivals on Fed tightening view
+   -0.372  Pound Sterling falls back as higher interest rates falter economic recovery
+   -0.357  Rupee falls 22 paise to new low of 79.48 against USD on subdued equity mkts
+
+[risk]  most relevant: Asian markets rally after Wall Street
+[risk]  USD/IDR-up pole (among top-300 relevant):
+   +0.329  Oil prices fall as SVB collapse hits financial markets
+   +0.309  European stocks skid on discovery of new virus variant as airlines, banks reel
+   +0.274  European Stocks Tumble as German IFO Index Raises Recession Fears
+   +0.260  Wall Street shares sink amid inflation worries
+[risk]  USD/IDR-down pole:
+   -0.549  Stock market today Global shares rise, buoyed by Wall Street rally from bonds and lower oil pri
+   -0.545  Tech stocks and calm bond market drive gains for Wall Street
+   -0.525  USD JPY extends gains as bond yields also push higher
+   -0.487  Shares rise as bank support emboldens investors
+
+[fed]  most relevant: European Midday Briefing ECB to Continue Rate-Hike Campaign as Fed Signals Potential Pause
+[fed]  USD/IDR-up pole (among top-300 relevant):
+   +0.408  Asian bonds gain solid inflows on rate cut hopes amid US inflation concerns News on Markets
+   +0.400  Forint, zloty firm on expectations of more rate hikes to come
+   +0.382  Dollar nudges higher as stocks, yields stay anchored
+   +0.378  Gold bears gain strength as further policy tightening by Fed cannot be ruled out
+[fed]  USD/IDR-down pole:
+   -0.146  Russia's central bank hikes interest rates by 3.5% as rouble falls Russia
+   -0.138  US The Federal Reserve is expected to hike rates by 75 bps UOB
+   -0.117  Federal Reserve to Hike Interest Rates for 9 Straight Meetings JPMorgan
+   -0.112  Interest rate Bank of England hikes UK rates for 14th time
+
+[geo]  most relevant: Intensity of clashes eases in Sudan amid three-day ceasefire, residents say
+[geo]  USD/IDR-up pole (among top-300 relevant):
+   +0.588  Houthis cause havoc as attacks in support of Palestine escalate
+   +0.562  Protesters and Police Clash in Paraguay Amid Anger Over Pandemic Response
+   +0.561  Covid protests escalate in Guangzhou as China lockdown anger boils
+   +0.546  Ukraine war Russian attacks outside Kyiv intensify
+[geo]  USD/IDR-down pole:
+   -0.295  Iraq, U.S.-led coalition conclude talks, signaling new phase
+   -0.240  Talks under way to extend Israel-Hamas ceasefire as return to fighting looms
+   -0.237  Ukraine standoff Day of diplomacy in attempt to ease Russian invasion threat
+   -0.206  Israeli media report progress on reaching a temporary truce in Gaza and a hostage-prisoner exch
+
+[oil]  most relevant: Oil prices slip as risk premium eases after Iran attack
+[oil]  USD/IDR-up pole (among top-300 relevant):
+   +0.237  Oil rises as supply concerns outweigh demand fear
+   +0.231  Oil trades higher as supply worries provide lift
+   +0.202  Oil prices climb as IEA lifts demand growth forecasts
+   +0.198  Global shares mixed after oil price climbs back above $100 per barrel
+[oil]  USD/IDR-down pole:
+   -0.601  Mortgage demand drops to 27-year low as interest rates pull back
+   -0.585  Weekly mortgage demand drops to three-month low, as rates climb again
+   -0.559  Shell profits plunge amid falling oil prices
+   -0.543  U.K. pound and bond yields fall after wet weather damps British economy
+
+[em]  most relevant: US Dollar faces safe-haven outflows as markets see Middle-East risks abating
+[em]  USD/IDR-up pole (among top-300 relevant):
+   +0.379  Oil prices fall on Chinese economic growth uncertainties
+   +0.334  China's economy takes hit from global slowdown as exports weaken
+   +0.304  Asian Stocks Drop Amid Middle East Concerns, China Liquidity Support
+   +0.297  Treasury yields move lower as China unrest raises global growth concerns
+[em]  USD/IDR-down pole:
+   -0.533  Stock market today Global shares rise, buoyed by Wall Street rally from bonds and lower oil pri
+   -0.523  INR Buoyed By Firm Trend In Domestic Equities
+   -0.512  Chinese markets continue rally on strong fiscal stimulus
+   -0.476  China's gold consumption rises on safe-haven demand
+
+[trade]  most relevant: Wage talks begin in Japan as COVID-linked economic uncertainty continues
+[trade]  USD/IDR-up pole (among top-300 relevant):
+   +0.634  Red Sea attacks bring new inflation risk
+   +0.623  Sri Lanka imposes rolling power cuts as economic crisis worsens
+   +0.579  High inflation darkens global economic outlook
+   +0.571  China's quant clampdown risks damaging fragile markets for years
+[trade]  USD/IDR-down pole:
+   -0.368  India, EU agree to broaden ties as Ukraine war shadows talks
+   -0.333  Ethiopia Eases Curbs On Foreign Exchange Regime
+   -0.322  EU countries agree to extend import tariff suspension for Ukraine
+   -0.317  NATO Steps Up Readiness in Eastern Europe
+
+===== sbert =====
+
+[dollar]  most relevant: Dollar climbs as upbeat U.S. data stokes rate hike bets
+[dollar]  USD/IDR-up pole (among top-300 relevant):
+   +0.292  EUR USD climbs to five-month high as buyers look for next upside leg
+   +0.241  EUR USD gains on US Dollar's correction and sticky Eurozone service inflation
+   +0.240  Dollar rises as market takes 4Q GDP in its stride By Investing.com
+   +0.240  Dollar climbs as upbeat U.S. data stokes rate hike bets
+[dollar]  USD/IDR-down pole:
+   -0.382  Canadian Dollar depreciates due to lower Oil prices, Fed Minutes ahead
+   -0.344  Rupee hits new low against US dollar as Asian peers tumble on Fed rate view
+   -0.337  AUD USD down to six-week lows on higher dollar, softer risk mood
+   -0.333  USD CAD falls further amid weak US Dollar, recovery in oil prices
+
+[risk]  most relevant: Global stock markets sink under global recession fears
+[risk]  USD/IDR-up pole (among top-300 relevant):
+   +0.340  US banking crisis dogs markets
+   +0.337  Stock Market Crash Expert Warns of 42%-65% Drop in S P 500
+   +0.332  BofA Strategists See Wall Street Rout Forcing Asset Liquidation
+   +0.326  Stocks, Real Estate, Economy to Crash As Interest Rates Bite Kiyosaki
+[risk]  USD/IDR-down pole:
+   -0.358  A Much-Needed Boost Arrives for UK Stocks as Inflation Cools
+   -0.334  Australia Market rebounds on calming rate hike fears
+   -0.333  Markets rally for 2nd day on buying in IT stocks, fresh foreign inflows
+   -0.323  Equities gain as investors await US inflation numbers
+
+[fed]  most relevant: Fed Rate Cut Outlook Cooling Inflation Data Means First Cut in June
+[fed]  USD/IDR-up pole (among top-300 relevant):
+   +0.332  Interest rates Bank of England hikes again in battle with inflation
+   +0.327  Treasury yields move higher ahead of inflation reading
+   +0.293  Latest U.K. inflation data shows other central banks have more hikes to come than the Fed
+   +0.284  BOE Likely to Raise Rates Further as Inflation Expected to Persist, MPC's Mann Says
+[fed]  USD/IDR-down pole:
+   -0.308  The Federal Reserve is making a rate cut decision on Thursday. Here's the impact on your money.
+   -0.289  Presidential election or not, economists say, the Fed will cut interest rates in the fall if it
+   -0.284  BOJ reportedly may downgrade view on economy at next week's policy meeting
+   -0.265  US Fed needs to cut interest rates immediately as recession looms Musk
+
+[geo]  most relevant: Diplomacy to pause Gaza war intensifies as Israelis advance
+[geo]  USD/IDR-up pole (among top-300 relevant):
+   +0.309  US threatens sanctions against officials in Tigray conflict
+   +0.308  Iran escalates fighting in the Red Sea and Lebanon
+   +0.307  Analysis Iran pushes militarily abroad amid unrest at home
+   +0.303  Europe braces for further strife as Russia-Ukraine crisis escalate
+[geo]  USD/IDR-down pole:
+   -0.388  Gaza ceasefire deal impasse resolved by mediators, officials say
+   -0.356  'Doesn't want to reach an agreement' Gaza ceasefire talks end with no breakthrough
+   -0.344  Truce is holding between Armenia and Azerbaijan
+   -0.331  Negotiators close to hostage deal halting Gaza fighting for weeks
+
+[oil]  most relevant: Oil prices drop as US crude inventories jump, fuel demand worries
+[oil]  USD/IDR-up pole (among top-300 relevant):
+   +0.430  Oil prices hit highest in more than two months
+   +0.403  Oil demand rises as gas prices surge IEA
+   +0.391  Oil prices surge as West mulls sanctions on Russian energy sector
+   +0.372  European Energy Prices Surge to Records as Supply Crisis Spreads By Bloomberg
+[oil]  USD/IDR-down pole:
+   -0.388  Major Gulf markets fall on lower oil prices
+   -0.366  Oil falls after industry data shows rise in U.S. crude inventories
+   -0.360  Oil prices drop as prospect of additional supply offset Middle East fears
+   -0.359  Oil falls more than 1% as concerns about Mideast supply ease
+
+[em]  most relevant: EMERGING MARKETS-Stocks, FX rebound as US Treasury yields take a breather
+[em]  USD/IDR-up pole (among top-300 relevant):
+   +0.347  Egypt's net foreign assets continue to fall as currency devaluation hurts economy
+   +0.342  BoE says global investors' appetite for risk is falling sharply
+   +0.287  Asian Stocks Drop Amid Middle East Concerns, China Liquidity Support
+   +0.280  Sensex, Nifty drop on foreign fund outflows, weak US markets
+[em]  USD/IDR-down pole:
+   -0.433  Markets rally for 2nd day on buying in IT stocks, fresh foreign inflows
+   -0.371  Asian Shares Rally Amid China, Fed Optimism
+   -0.363  Asian Stocks Rise as Investors Seize on New China Stimulus
+   -0.345  Stock market today Global shares rise, buoyed by Wall Street rally from bonds and lower oil pri
+
+[trade]  most relevant: A timeline of US-China tit-for-tat tariffs since Trump's first term
+[trade]  USD/IDR-up pole (among top-300 relevant):
+   +0.259  China imposes new tariffs on U.S. goods in retaliation
+   +0.258  China launches anti-subsidy probe into EU dairy products as trade spat escalates
+   +0.256  Biden sharply hikes US tariffs on an array of Chinese imports
+   +0.243  Trump targets Canada with tariff threats and trolling
+[trade]  USD/IDR-down pole:
+   -0.369  Cyprus hails full lifting of US weapons embargo, focus bilateral ties
+   -0.331  Global Markets Relieved by Biden-Xi Talk
+   -0.325  China And Ecuador Sign Free Trade Deal
+   -0.322  Gantz says maritime deal with Lebanon 'fair and good for both sides'
