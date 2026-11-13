@@ -22,3 +22,11 @@ logs/
 
 # Large intermediate (regenerable from the aligned dataset)
 data/cleaned/articles_clean.csv.gz
+
+# Task 3 headline embeddings (regenerable with src/embeddings.py, ~80 MB each)
+data/embeddings/
+report/project_summary.md
+report/project_summary.pdf
+report/task2_report.html
+report/Task2_Report_TeamMiguel.pdf
+report/Task3_Plan_TeamMiguel.pdf

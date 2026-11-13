@@ -89,3 +89,30 @@ TFIDF_MAX_DF = 0.85
 TFIDF_NGRAM_RANGE = (1, 2)
 
 RANDOM_SEED = 42
+
+# --------------------------------------------------------------------------
+# Task 3 -- headline embeddings (src/embeddings.py)
+# --------------------------------------------------------------------------
+# Cached per-article embedding matrices. Regenerable and ~80 MB each for the
+# transformer encoders, so the directory is gitignored.
+EMBED_DIR = DATA_DIR / "embeddings"
+
+# Static, general-purpose: pre-trained GloVe (Wikipedia + Gigaword, 2014).
+GLOVE_MODEL = "glove-wiki-gigaword-300"
+# Static, in-domain: FastText trained on TRAINING-PERIOD headlines only.
+# Small corpus (~42k headlines), hence a modest dimension.
+FASTTEXT_DIM = 100
+FASTTEXT_EPOCHS = 20
+# Smooth-inverse-frequency weight a / (a + p(w)), Arora et al. (2017).
+SIF_A = 1e-3
+
+# Contextual, domain-specific: BERT further pre-trained on Reuters TRC2 and
+# fine-tuned on Financial PhraseBank sentiment.
+FINBERT_MODEL = "ProsusAI/finbert"
+# Contextual, general-purpose: sentence-transformer trained with a contrastive
+# objective, so cosine similarity between outputs is meaningful.
+SBERT_MODEL = "sentence-transformers/all-mpnet-base-v2"
+# Headlines average 11 words; a few run past 100 tokens, so 128 truncates
+# almost nothing. The count actually truncated is logged at encode time.
+TRANSFORMER_MAX_LENGTH = 128
+EMBED_BATCH_SIZE = 64

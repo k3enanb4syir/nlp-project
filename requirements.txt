@@ -7,10 +7,19 @@ requests>=2.32
 beautifulsoup4>=4.12
 selenium>=4.20
 
-# NLP feature extraction (lexicon + classical vectorisation only --
+# Task 2 NLP features (lexicon + classical vectorisation only --
 # no pre-trained embeddings or transformers, per Task 2 constraints)
 vaderSentiment>=3.3.2
 nltk>=3.8
+
+# Task 3 text representations (src/embeddings.py)
+# For GPU encoding install the CUDA build of torch FIRST, e.g.
+#   pip install torch --index-url https://download.pytorch.org/whl/cu128
+# otherwise pip installs the CPU build (works, just slower).
+torch>=2.5
+transformers>=4.45
+sentence-transformers>=3.0
+gensim>=4.3.3
 
 # Modelling & evaluation
 scikit-learn>=1.5
