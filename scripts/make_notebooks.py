@@ -753,10 +753,259 @@ those words.
     return nb
 
 
+def build_feature_analysis() -> nbf.NotebookNode:
+    cells = [
+        md("""
+# Task 3 -- Feature analysis
+
+Four views of what the text features measure and how the models use them.
+Everything here is read from CSVs written by `src/analysis.py`, which needs the
+gitignored embedding cache; this notebook does not.
+
+    python src/ablation.py
+    python src/analysis.py
+
+1. **Embedding map** -- SBERT headlines in the plane of their first two
+   principal components, with the seven channel axes drawn as arrows.
+2. **SHAP + headline retrieval** -- which features the C5 model leans on, and
+   the headlines behind its largest text-driven calls.
+3. **Event check** -- do the channels react to known events? No returns used.
+4. **Error table** -- the days where C5 and Model A disagree.
+
+The plan named UMAP and LightGBM. A linear map is used because only a linear
+projection turns an axis into an arrow, and SHAP comes from XGBoost's built-in
+exact TreeSHAP, because the C5 models are XGBoost.
+        """),
+        code(BOOTSTRAP),
+        code("""
+from anchors import CHANNELS
+
+R = config.RESULTS_DIR
+pts = pd.read_csv(config.ANALYSIS_MAP_CSV, parse_dates=["date"])
+arrows = pd.read_csv(config.ANALYSIS_MAP_AXES_CSV)
+imp = pd.read_csv(config.ANALYSIS_SHAP_CSV)
+shifts = pd.read_csv(config.ANALYSIS_SHIFTS_CSV, parse_dates=["date"])
+heads = pd.read_csv(config.ANALYSIS_SHIFT_HEADLINES_CSV, parse_dates=["date"])
+events = pd.read_csv(config.ANALYSIS_EVENTS_CSV)
+errors = pd.read_csv(config.ANALYSIS_ERRORS_CSV, parse_dates=["date"])
+pd.set_option("display.max_colwidth", 110)
+        """),
+
+        md("""
+## 1. Embedding map
+
+Each dot is a headline; orange dots come from sessions with a large move. Each
+arrow starts at its channel's topic vector and points toward the USD/IDR-up
+pole. Arrows are scaled up by a common factor so they are visible; the table
+below gives each axis's true share in this plane.
+        """),
+        code("""
+fig, ax = plt.subplots(figsize=(9, 7))
+for flag, color, label in [(0, viz.BLUE, "normal session"), (1, viz.ORANGE, "large-move session")]:
+    s = pts[pts.large_move == flag]
+    ax.scatter(s.x, s.y, s=6, color=color, alpha=0.35, linewidths=0, label=label)
+scale = 0.35 / arrows.in_plane_share.max()
+for r in arrows.itertuples():
+    ax.annotate("", xy=(r.x0 + scale * r.dx, r.y0 + scale * r.dy), xytext=(r.x0, r.y0),
+                arrowprops=dict(arrowstyle="-|>", color=viz.TEXT_PRIMARY, lw=1.6))
+    ax.text(r.x0 + scale * r.dx * 1.12, r.y0 + scale * r.dy * 1.12, r.channel,
+            fontsize=10, color=viz.TEXT_PRIMARY, ha="center", va="center")
+ax.set_xlabel("PC1 (training headlines)")
+ax.set_ylabel("PC2")
+ax.set_title(f"SBERT headline map; channel arrows scaled x{scale:.1f}")
+# Keep every arrow tip and label inside the frame.
+tips_x = arrows.x0 + scale * arrows.dx * 1.2
+tips_y = arrows.y0 + scale * arrows.dy * 1.2
+ax.set_xlim(min(pts.x.min(), tips_x.min()) - 0.05, max(pts.x.max(), tips_x.max()) + 0.08)
+ax.set_ylim(min(pts.y.min(), tips_y.min()) - 0.05, max(pts.y.max(), tips_y.max()) + 0.05)
+ax.legend(loc="upper right", markerscale=3)
+plt.tight_layout()
+plt.show()
+        """),
+        code("""
+print(f"large-move share among mapped headlines: {pts.large_move.mean():.3f}")
+arrows[["channel", "in_plane_share"]].sort_values("in_plane_share", ascending=False).round(3)
+        """),
+
+        md("""
+## 2. SHAP: what the C5 models lean on
+
+Mean |SHAP| over the test block, in log-odds. Blue bars are rate features,
+orange bars are text features (channel scores, novelty).
+        """),
+        code("""
+fig, axes = plt.subplots(1, 2, figsize=(11, 5.2))
+for ax, (target, t) in zip(axes, imp.groupby("target", sort=False)):
+    t = t.sort_values("mean_abs_shap").tail(12)
+    colors = [viz.COLOR_RATE if g == "rates" else viz.COLOR_NEWS for g in t.group]
+    ax.barh(t.feature, t.mean_abs_shap, color=colors, height=0.66)
+    ax.set_title(f"{target} (C5 on {t.encoder.iloc[0]})")
+    ax.set_xlabel("mean |SHAP| on test (log-odds)")
+    ax.grid(axis="y", visible=False)
+plt.tight_layout()
+plt.show()
+
+share = imp.groupby(["target", "group"]).mean_abs_shap.sum()
+(share / share.groupby(level=0).transform("sum")).unstack().round(3)
+        """),
+        md("""
+### 2.1 The largest text-driven calls, and the headlines behind them
+
+`text_shift` is the summed SHAP of all text features on that day: how far the
+news moved the model's log-odds. `channel` is the axis feature with the
+largest |SHAP|. Below each table: the headlines that channel's top-k pooling
+actually used that day.
+        """),
+        code("""
+cols = ["date", "actual", "pred", "prob", "text_shift", "rate_shift", "channel", "top_axis_shap"]
+shifts[shifts.target == "direction"][cols].round(3).reset_index(drop=True)
+        """),
+        code("""
+(heads[(heads.target == "direction") & (heads["rank"] <= 3)]
+ [["date", "channel", "rank", "title", "relevance", "direction"]].round(3).reset_index(drop=True))
+        """),
+        code("""
+shifts[shifts.target == "large_move"][cols].round(3).reset_index(drop=True)
+        """),
+        code("""
+(heads[(heads.target == "large_move") & (heads["rank"] <= 3)]
+ [["date", "channel", "rank", "title", "relevance", "direction"]].round(3).reset_index(drop=True))
+        """),
+
+        md("""
+## 3. Event face-validity check
+
+Attention of the risk, geo and trade channels (SBERT), as a z-score against the
+training distribution, around three events. Each event has one channel that
+should react: risk for SVB, geo for 7 October, trade for the April 2025
+tariffs. News is aligned to the session after it is published, so the reaction
+starts after the dashed line.
+        """),
+        code("""
+tf = pd.read_csv(config.TEXT_FEATURES_DIR / "sbert.csv", parse_dates=["date"]).sort_values("date")
+train = tf[tf.date <= pd.Timestamp(config.TRAIN_END)]
+show = {"risk": viz.BLUE, "geo": viz.ORANGE, "trade": viz.AQUA}
+
+fig, axes = plt.subplots(1, len(config.ANALYSIS_EVENTS), figsize=(13, 4.2), sharey=True)
+for ax, (name, day, expected) in zip(axes, config.ANALYSIS_EVENTS):
+    d = pd.Timestamp(day)
+    pos = tf.date.searchsorted(d)
+    w = tf.iloc[max(0, pos - 15): pos + 15]
+    ends = {}
+    for ch, color in show.items():
+        col = f"ax_{ch}_attn"
+        z = (w[col] - train[col].mean()) / train[col].std()
+        ax.plot(w.date, z, color=color, lw=2.2 if ch == expected else 1.4,
+                alpha=1 if ch == expected else 0.75)
+        ends[ch] = z.iloc[-1]
+    # Direct labels at the line ends, nudged apart so they never overlap.
+    placed = []
+    for ch, y in sorted(ends.items(), key=lambda kv: kv[1]):
+        y = max([y] + [p + 0.55 for p in placed[-1:]])
+        placed.append(y)
+        ax.text(w.date.iloc[-1], y, f" {ch}", color=viz.TEXT_PRIMARY, fontsize=9, va="center")
+    ax.axvline(d, color=viz.TEXT_SECONDARY, ls="--", lw=1)
+    ax.axhline(0, color=viz.GRID, lw=1)
+    ax.set_title(f"{name} (expect: {expected})", fontsize=10)
+    ax.tick_params(axis="x", labelrotation=30, labelsize=8)
+axes[0].set_ylabel("attention z-score vs training")
+plt.tight_layout()
+plt.show()
+        """),
+        md("""
+Rank of the expected channel's attention spike among all seven channels (1 =
+the biggest spike), and its size, for every encoder:
+        """),
+        code("""
+exp = events[events.channel == events.expected]
+pd.concat({"rank": exp.pivot(index="event", columns="encoder", values="attn_rank"),
+           "z": exp.pivot(index="event", columns="encoder", values="attn_z_max").round(2)}, axis=1)
+        """),
+        code("""
+# All seven channels for SBERT: attention spike and mean direction (+ = USD/IDR up).
+(events[events.encoder == "sbert"]
+ .sort_values(["event", "attn_rank"])
+ [["event", "window", "channel", "attn_z_max", "dir_z_mean", "attn_rank"]]
+ .round(2).reset_index(drop=True))
+        """),
+
+        md("""
+## 4. Error table: where do C5 and Model A disagree?
+
+Test days split by which model was right. For each group: how many days, the
+mean absolute return, the news volume and the novelty of the day's news.
+        """),
+        code("""
+(errors.groupby(["target", "group"])
+ .agg(days=("date", "size"), abs_return=("abs_return", "mean"),
+      n_articles=("n_articles", "mean"), nov_centroid=("nov_centroid", "mean"))
+ .round(4))
+        """),
+        code("""
+# Days where the news model was right and the rates model wrong, with the
+# day's most FX-relevant headlines.
+(errors[errors.group == "C5 right, A wrong"]
+ [["target", "date", "actual", "abs_return", "top_headlines"]]
+ .sort_values(["target", "abs_return"], ascending=[True, False])
+ .groupby("target").head(6).round(4).reset_index(drop=True))
+        """),
+        code("""
+(errors[errors.group == "A right, C5 wrong"]
+ [["target", "date", "actual", "abs_return", "top_headlines"]]
+ .sort_values(["target", "abs_return"], ascending=[True, False])
+ .groupby("target").head(6).round(4).reset_index(drop=True))
+        """),
+
+        md("""
+## 5. Findings
+
+1. **The channels pass the event check for financial shocks, and only partly
+   for war.** The April 2025 tariffs produce the largest trade-channel spike in
+   every encoder (z = 3.2 to 7.5, rank 1 of 7). SVB moves the four financial
+   channels (dollar, risk, fed, EM) and leaves geo at its lowest; risk-off and
+   EM-outflow directions both point USD-up, as theory says. After 7 October
+   the geo channel does spike (SBERT z = 2.4) and points toward escalation, but
+   EM and oil spike more. Geo ranks 3rd to 6th, so the geo axis is the weakest
+   of the three.
+
+2. **Text features carry about half of each C5 model's attributions.** Channel
+   scores and novelty account for 52% (direction) and 55% (large move) of mean
+   |SHAP| on test. The models use the text heavily; the ablation shows this
+   does not turn into a reliable gain.
+
+3. **Retrieval exposes the encoder difference.** For large moves (FastText),
+   the headlines behind the biggest text-driven calls are on-topic: Strait of
+   Hormuz, US–Israel strikes on Iran, oil supply. For direction (GloVe), the
+   top-k pooling often picks off-topic headlines ("Bakery tourism is booming"
+   counted as trade news). GloVe's topic relevance is too loose to trust.
+
+4. **News helps on novel, big-move days.** On large moves, the 20 days where C5
+   was right and A wrong have nearly twice the absolute return (0.36% vs
+   0.19%) and much more novel news (nov_centroid 0.82 vs 0.68) than the days
+   where only A was right. Direction shows no such pattern.
+
+5. **The map is weak evidence.** The first two components explain 6.5% of
+   variance, and at most 13% of any channel axis lies in that plane. The
+   channel axes run mostly orthogonal to the corpus's main topic directions.
+   This is expected (they contrast minimal pairs within a topic), but it means
+   the 2-D picture shows little of what the axes measure.
+        """),
+    ]
+
+    nb = nbf.v4.new_notebook(cells=cells)
+    nb.metadata = {
+        "kernelspec": {"display_name": "Python 3", "language": "python",
+                       "name": "python3"},
+        "language_info": {"name": "python"},
+    }
+    return nb
+
+
 NOTEBOOKS = {
     "01": ("01_eda.ipynb", build_eda),
     "02": ("02_baseline_results.ipynb", build_results),
     "03": ("03_ablation.ipynb", build_ablation),
+    "04": ("04_feature_analysis.ipynb", build_feature_analysis),
 }
 
 

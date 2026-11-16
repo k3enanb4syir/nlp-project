@@ -156,6 +156,8 @@ FUSION_METRICS_CSV = RESULTS_DIR / "fusion_metrics.csv"
 FUSION_SELECTED_CSV = RESULTS_DIR / "fusion_selected.csv"
 FUSION_GATE_CSV = RESULTS_DIR / "fusion_gate.csv"
 FUSION_PREDICTIONS_CSV = RESULTS_DIR / "fusion_test_predictions.csv"
+
+# --------------------------------------------------------------------------
 # Task 3 -- ablation matrix (src/ablation.py, notebook/03_ablation.ipynb)
 # --------------------------------------------------------------------------
 # C-raw control: session-mean raw embeddings reduced by PCA fitted on
@@ -171,3 +173,33 @@ BOOTSTRAP_REPS = 2000
 ABLATION_METRICS_CSV = RESULTS_DIR / "ablation_metrics.csv"
 ABLATION_BOOTSTRAP_CSV = RESULTS_DIR / "ablation_bootstrap.csv"
 ABLATION_PREDICTIONS_CSV = RESULTS_DIR / "ablation_test_predictions.csv"
+
+# --------------------------------------------------------------------------
+# Task 3 -- feature analysis (src/analysis.py, notebook/04_feature_analysis.ipynb)
+# --------------------------------------------------------------------------
+# Embedding map: a linear (PCA) projection, so the channel axes can be drawn
+# as true arrows. SBERT is the reference encoder for the axis method.
+ANALYSIS_MAP_ENCODER = "sbert"
+ANALYSIS_MAP_SAMPLE = 6000          # headlines drawn on the map
+# SHAP + retrieval: the test days whose text features moved the C5 model's
+# log-odds the most.
+ANALYSIS_TOP_SHIFTS = 10
+# Face-validity check: (name, date of the event, channel expected to react).
+# News is aligned to the first trading session strictly after its date, so the
+# check looks at the ANALYSIS_EVENT_SESSIONS sessions after each date.
+ANALYSIS_EVENTS = (
+    ("SVB collapse", "2023-03-10", "risk"),
+    ("7 October attack", "2023-10-07", "geo"),
+    ("US 'Liberation Day' tariffs", "2025-04-02", "trade"),
+)
+ANALYSIS_EVENT_SESSIONS = 5
+# Error table: headlines shown per day.
+ANALYSIS_ERROR_HEADLINES = 3
+
+ANALYSIS_MAP_CSV = RESULTS_DIR / "analysis_map.csv"
+ANALYSIS_MAP_AXES_CSV = RESULTS_DIR / "analysis_map_axes.csv"
+ANALYSIS_SHAP_CSV = RESULTS_DIR / "analysis_shap_importance.csv"
+ANALYSIS_SHIFTS_CSV = RESULTS_DIR / "analysis_shap_shifts.csv"
+ANALYSIS_SHIFT_HEADLINES_CSV = RESULTS_DIR / "analysis_shap_headlines.csv"
+ANALYSIS_EVENTS_CSV = RESULTS_DIR / "analysis_events.csv"
+ANALYSIS_ERRORS_CSV = RESULTS_DIR / "analysis_errors.csv"

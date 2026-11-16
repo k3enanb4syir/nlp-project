@@ -1,0 +1,85 @@
+event,event_date,expected,encoder,channel,window,attn_z_max,dir_z_mean,attn_rank
+SVB collapse,2023-03-10,risk,glove,dollar,2023-03-13..2023-03-17,1.357,-0.217,4
+SVB collapse,2023-03-10,risk,glove,risk,2023-03-13..2023-03-17,1.979,0.581,1
+SVB collapse,2023-03-10,risk,glove,fed,2023-03-13..2023-03-17,1.452,-0.124,3
+SVB collapse,2023-03-10,risk,glove,geo,2023-03-13..2023-03-17,0.548,0.282,6
+SVB collapse,2023-03-10,risk,glove,oil,2023-03-13..2023-03-17,0.754,-1.015,5
+SVB collapse,2023-03-10,risk,glove,em,2023-03-13..2023-03-17,1.559,0.872,2
+SVB collapse,2023-03-10,risk,glove,trade,2023-03-13..2023-03-17,0.469,0.500,7
+7 October attack,2023-10-07,geo,glove,dollar,2023-10-09..2023-10-13,1.244,-0.157,5
+7 October attack,2023-10-07,geo,glove,risk,2023-10-09..2023-10-13,1.175,-0.482,6
+7 October attack,2023-10-07,geo,glove,fed,2023-10-09..2023-10-13,1.006,0.314,7
+7 October attack,2023-10-07,geo,glove,geo,2023-10-09..2023-10-13,1.697,0.350,4
+7 October attack,2023-10-07,geo,glove,oil,2023-10-09..2023-10-13,1.825,-0.284,3
+7 October attack,2023-10-07,geo,glove,em,2023-10-09..2023-10-13,2.175,-0.181,2
+7 October attack,2023-10-07,geo,glove,trade,2023-10-09..2023-10-13,2.552,0.068,1
+US 'Liberation Day' tariffs,2025-04-02,trade,glove,dollar,2025-04-08..2025-04-14,1.540,0.208,6
+US 'Liberation Day' tariffs,2025-04-02,trade,glove,risk,2025-04-08..2025-04-14,2.240,0.382,4
+US 'Liberation Day' tariffs,2025-04-02,trade,glove,fed,2025-04-08..2025-04-14,1.297,0.187,7
+US 'Liberation Day' tariffs,2025-04-02,trade,glove,geo,2025-04-08..2025-04-14,2.625,-0.435,2
+US 'Liberation Day' tariffs,2025-04-02,trade,glove,oil,2025-04-08..2025-04-14,1.893,-0.802,5
+US 'Liberation Day' tariffs,2025-04-02,trade,glove,em,2025-04-08..2025-04-14,2.569,0.802,3
+US 'Liberation Day' tariffs,2025-04-02,trade,glove,trade,2025-04-08..2025-04-14,7.057,0.427,1
+SVB collapse,2023-03-10,risk,fasttext,dollar,2023-03-13..2023-03-17,1.612,-0.962,1
+SVB collapse,2023-03-10,risk,fasttext,risk,2023-03-13..2023-03-17,1.511,0.396,4
+SVB collapse,2023-03-10,risk,fasttext,fed,2023-03-13..2023-03-17,1.536,-0.304,2
+SVB collapse,2023-03-10,risk,fasttext,geo,2023-03-13..2023-03-17,0.500,0.077,5
+SVB collapse,2023-03-10,risk,fasttext,oil,2023-03-13..2023-03-17,0.474,-1.219,6
+SVB collapse,2023-03-10,risk,fasttext,em,2023-03-13..2023-03-17,1.522,0.896,3
+SVB collapse,2023-03-10,risk,fasttext,trade,2023-03-13..2023-03-17,0.230,-0.188,7
+7 October attack,2023-10-07,geo,fasttext,dollar,2023-10-09..2023-10-13,1.024,0.108,7
+7 October attack,2023-10-07,geo,fasttext,risk,2023-10-09..2023-10-13,1.296,-0.452,5
+7 October attack,2023-10-07,geo,fasttext,fed,2023-10-09..2023-10-13,1.169,0.478,6
+7 October attack,2023-10-07,geo,fasttext,geo,2023-10-09..2023-10-13,1.864,0.559,4
+7 October attack,2023-10-07,geo,fasttext,oil,2023-10-09..2023-10-13,1.881,-0.352,2
+7 October attack,2023-10-07,geo,fasttext,em,2023-10-09..2023-10-13,1.867,-0.747,3
+7 October attack,2023-10-07,geo,fasttext,trade,2023-10-09..2023-10-13,2.237,1.017,1
+US 'Liberation Day' tariffs,2025-04-02,trade,fasttext,dollar,2025-04-08..2025-04-14,1.316,-0.499,7
+US 'Liberation Day' tariffs,2025-04-02,trade,fasttext,risk,2025-04-08..2025-04-14,1.809,0.009,5
+US 'Liberation Day' tariffs,2025-04-02,trade,fasttext,fed,2025-04-08..2025-04-14,1.338,0.497,6
+US 'Liberation Day' tariffs,2025-04-02,trade,fasttext,geo,2025-04-08..2025-04-14,2.388,-0.448,2
+US 'Liberation Day' tariffs,2025-04-02,trade,fasttext,oil,2025-04-08..2025-04-14,2.080,-0.469,3
+US 'Liberation Day' tariffs,2025-04-02,trade,fasttext,em,2025-04-08..2025-04-14,1.893,0.667,4
+US 'Liberation Day' tariffs,2025-04-02,trade,fasttext,trade,2025-04-08..2025-04-14,5.095,0.926,1
+SVB collapse,2023-03-10,risk,finbert,dollar,2023-03-13..2023-03-17,0.885,-0.687,5
+SVB collapse,2023-03-10,risk,finbert,risk,2023-03-13..2023-03-17,1.710,0.683,1
+SVB collapse,2023-03-10,risk,finbert,fed,2023-03-13..2023-03-17,1.302,-0.228,2
+SVB collapse,2023-03-10,risk,finbert,geo,2023-03-13..2023-03-17,0.588,-0.259,7
+SVB collapse,2023-03-10,risk,finbert,oil,2023-03-13..2023-03-17,1.227,-0.642,3
+SVB collapse,2023-03-10,risk,finbert,em,2023-03-13..2023-03-17,0.938,0.538,4
+SVB collapse,2023-03-10,risk,finbert,trade,2023-03-13..2023-03-17,0.625,0.469,6
+7 October attack,2023-10-07,geo,finbert,dollar,2023-10-09..2023-10-13,1.145,-0.028,5
+7 October attack,2023-10-07,geo,finbert,risk,2023-10-09..2023-10-13,1.172,-0.063,4
+7 October attack,2023-10-07,geo,finbert,fed,2023-10-09..2023-10-13,1.289,-0.325,3
+7 October attack,2023-10-07,geo,finbert,geo,2023-10-09..2023-10-13,1.094,0.031,6
+7 October attack,2023-10-07,geo,finbert,oil,2023-10-09..2023-10-13,1.065,-0.301,7
+7 October attack,2023-10-07,geo,finbert,em,2023-10-09..2023-10-13,1.486,0.229,2
+7 October attack,2023-10-07,geo,finbert,trade,2023-10-09..2023-10-13,2.018,0.020,1
+US 'Liberation Day' tariffs,2025-04-02,trade,finbert,dollar,2025-04-08..2025-04-14,1.042,-0.184,6
+US 'Liberation Day' tariffs,2025-04-02,trade,finbert,risk,2025-04-08..2025-04-14,1.892,0.113,2
+US 'Liberation Day' tariffs,2025-04-02,trade,finbert,fed,2025-04-08..2025-04-14,0.974,-0.111,7
+US 'Liberation Day' tariffs,2025-04-02,trade,finbert,geo,2025-04-08..2025-04-14,1.576,-0.535,4
+US 'Liberation Day' tariffs,2025-04-02,trade,finbert,oil,2025-04-08..2025-04-14,1.765,-0.472,3
+US 'Liberation Day' tariffs,2025-04-02,trade,finbert,em,2025-04-08..2025-04-14,1.195,0.008,5
+US 'Liberation Day' tariffs,2025-04-02,trade,finbert,trade,2025-04-08..2025-04-14,3.171,-0.036,1
+SVB collapse,2023-03-10,risk,sbert,dollar,2023-03-13..2023-03-17,2.226,-0.978,1
+SVB collapse,2023-03-10,risk,sbert,risk,2023-03-13..2023-03-17,1.983,1.552,2
+SVB collapse,2023-03-10,risk,sbert,fed,2023-03-13..2023-03-17,1.930,-0.492,3
+SVB collapse,2023-03-10,risk,sbert,geo,2023-03-13..2023-03-17,-0.306,-0.248,7
+SVB collapse,2023-03-10,risk,sbert,oil,2023-03-13..2023-03-17,0.549,-1.207,5
+SVB collapse,2023-03-10,risk,sbert,em,2023-03-13..2023-03-17,1.860,1.702,4
+SVB collapse,2023-03-10,risk,sbert,trade,2023-03-13..2023-03-17,0.033,-0.775,6
+7 October attack,2023-10-07,geo,sbert,dollar,2023-10-09..2023-10-13,0.753,-0.160,7
+7 October attack,2023-10-07,geo,sbert,risk,2023-10-09..2023-10-13,1.102,0.264,6
+7 October attack,2023-10-07,geo,sbert,fed,2023-10-09..2023-10-13,1.578,0.055,4
+7 October attack,2023-10-07,geo,sbert,geo,2023-10-09..2023-10-13,2.427,0.649,3
+7 October attack,2023-10-07,geo,sbert,oil,2023-10-09..2023-10-13,2.525,-0.255,2
+7 October attack,2023-10-07,geo,sbert,em,2023-10-09..2023-10-13,3.711,-0.052,1
+7 October attack,2023-10-07,geo,sbert,trade,2023-10-09..2023-10-13,1.443,0.153,5
+US 'Liberation Day' tariffs,2025-04-02,trade,sbert,dollar,2025-04-08..2025-04-14,1.252,0.072,7
+US 'Liberation Day' tariffs,2025-04-02,trade,sbert,risk,2025-04-08..2025-04-14,2.540,0.411,4
+US 'Liberation Day' tariffs,2025-04-02,trade,sbert,fed,2025-04-08..2025-04-14,1.669,-0.710,6
+US 'Liberation Day' tariffs,2025-04-02,trade,sbert,geo,2025-04-08..2025-04-14,2.150,-0.951,5
+US 'Liberation Day' tariffs,2025-04-02,trade,sbert,oil,2025-04-08..2025-04-14,2.542,-0.396,3
+US 'Liberation Day' tariffs,2025-04-02,trade,sbert,em,2025-04-08..2025-04-14,2.546,0.256,2
+US 'Liberation Day' tariffs,2025-04-02,trade,sbert,trade,2025-04-08..2025-04-14,7.509,1.552,1

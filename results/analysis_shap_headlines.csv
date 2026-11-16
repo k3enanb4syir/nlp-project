@@ -1,0 +1,100 @@
+target,date,channel,rank,title,relevance,direction
+direction,2026-02-24,geo,1,"Disinformation was 'central accelerant' in Leicester Hindu-Muslim clashes, inquiry finds UK news",0.2036,0.2458
+direction,2026-02-24,geo,2,"Putin Has Started World War III, Zelensky Says",0.0967,-0.0185
+direction,2026-02-24,geo,3,Spain to declassify documents on failed 1981 coup attempt,0.0877,-0.0603
+direction,2026-02-24,geo,4,U.S. deported gay asylum-seeker to country where homosexuality is illegal,-0.0065,0.1084
+direction,2026-02-24,geo,5,Mystery surrounds Brisbane River sinking of iconic party paddleboat Kookaburra Queen at Hemmant,-0.0289,0.0423
+direction,2026-03-12,geo,1,"Germany, others partially release oil reserves amid Iran war",0.2001,-0.0052
+direction,2026-03-12,geo,2,Pennsylvania lawmaker to propose temporarily suspending gas taxes amid rising fuel prices,0.1773,-0.0007
+direction,2026-03-12,geo,3,Ukraine says it has hit Russian 'missile component' plant,0.1210,0.2018
+direction,2026-03-12,geo,4,Robot warfare is misogyny making a comeback?,0.0873,0.1796
+direction,2026-03-12,geo,5,Magee Minister 'fully committed' to Ulster University expansion plans,0.0717,-0.1413
+direction,2026-06-18,oil,1,"KHNP picks Yeongdeok, Gijang for new nuclear projects",0.0949,0.0539
+direction,2026-06-18,oil,2,G7 demands Lebanon ceasefire as leaders back US-Iran deal,0.0537,0.1024
+direction,2026-06-18,oil,3,Comptroller finds public service is improving but call centers are falling short,0.0304,-0.0306
+direction,2026-06-18,oil,4,Heading 'Down Under ' The Jerusalem Post Announces Sydney Summit,-0.0434,0.0606
+direction,2026-06-18,oil,5,"Pentagon used Elon Musk's Grok AI to fire 2,000 missiles at Iran, official says",-0.0552,0.1159
+direction,2026-02-12,geo,1,"Iran's revolution anniversary marred by protests, nuclear tensions",0.5143,0.1617
+direction,2026-02-12,geo,2,Prime minister 'determined to succeed' as Closing the Gap deadline looms,0.2321,-0.1549
+direction,2026-02-12,geo,3,Himalayan peaks to Icelandic adventures Journeys for long-drive lovers,0.0782,0.0778
+direction,2026-02-12,geo,4,"Raghav Chadha asks Centre to legalise VDAs What it means, why it matters",-0.0156,-0.0289
+direction,2026-02-12,geo,5,Breaking Gunman holds students and teachers hostage at Thai school,-0.0339,0.0333
+direction,2026-08-14,trade,1,Türkiye lays out plans for defence pact with Pakistan and Saudi Arabia,0.2478,-0.0035
+direction,2026-08-14,trade,2,Salvage effort underway for stricken tanker spilling oil off Omani coast,0.1292,0.0506
+direction,2026-08-14,trade,3,Colombia's earthquake is déjà vu for Venezuelans,0.0736,0.0502
+direction,2026-08-14,trade,4,Zambia votes in presidential election that tests incumbent's economic reforms,0.0713,-0.0155
+direction,2026-08-14,trade,5,Cuba marks Fidel Castro's 100th birthday as his divisive legacy looms over a nation in crisis,0.0521,0.0225
+direction,2026-08-10,oil,1,"UAE says Iran targeted ADNOC tanker in Hormuz, no casualties",0.2408,0.1091
+direction,2026-08-10,oil,2,Moore Threads plans Hong Kong listing after posting 147% jump in first-half revenue,0.1686,-0.0424
+direction,2026-08-10,oil,3,"Yemen's Houthis claim attack on Aramco oil facility in Saudi Arabia, and other Middle East news",0.1583,0.1657
+direction,2026-08-10,oil,4,Tensions flare as $34-billion Charter-Cox cable deal nears finish line,0.1438,0.0920
+direction,2026-08-10,oil,5,Mount Bromo fires 3 helicopters deployed for up to 30 daily drops,0.1200,0.1753
+direction,2026-04-20,risk,1,SIP stoppage ratio crosses 100% as market volatility hits investors,0.4753,-0.1546
+direction,2026-04-20,risk,2,"Sensex, Nifty hold steady at midday HUL, Nestle lead gains as IT, Financials weigh",0.4546,-0.2606
+direction,2026-04-20,risk,3,"FPIs turn net buyers in equities for the week, pump 4,794 crore",0.4365,-0.1465
+direction,2026-04-20,risk,4,"Large caps turn attractive as valuations ease caution on mid, small caps DSP MF",0.4152,-0.1207
+direction,2026-04-20,risk,5,Yes Bank posts higher Q4 profit on loan growth - The HinduBusinessLine,0.3370,-0.2049
+direction,2026-07-24,geo,1,China-owned oil tankers transit Bab al-Mandab amid Houthi attacks on Red Sea,0.2121,0.1364
+direction,2026-07-24,geo,2,US eyes ban on Chinese humanoid robots as US-China tech rivalry intensifies,0.1744,0.1467
+direction,2026-07-24,geo,3,"Schiff calls out Trump's corruption, warns against complacency",0.1442,0.2715
+direction,2026-07-24,geo,4,How four key Trump claims about the Iran war have fallen apart,0.1293,0.1023
+direction,2026-07-24,geo,5,Column Trump's undermining of U.S. elections is not a simple partisan issue,0.1237,0.0036
+direction,2026-08-07,trade,1,"'Bakery tourism' is booming, and these are the cities to visit",0.1312,0.1696
+direction,2026-08-07,trade,2,Report US blocked wider Israeli attack on Hezbollah after deadly Lebanon blast,0.0946,0.1427
+direction,2026-08-07,trade,3,Germany 10 years of 'Integration Act' for refugees,0.0905,-0.0950
+direction,2026-08-07,trade,4,Iran Trump says he'd rather make deal than 'kill people' amid reports of weapons shortages,0.0735,0.0766
+direction,2026-08-07,trade,5,Germany arrests Ukrainian suspected of spying on arms firm,0.0655,0.0642
+direction,2026-07-15,geo,1,Ukraine targets another 11 Russian ships in Sea of Azov,0.1988,0.1817
+direction,2026-07-15,geo,2,Lindsey Graham's successor to be sworn in and Maine ICE shooting sparks outcry Morning Rundown,-0.0649,-0.0576
+direction,2026-07-15,geo,3,"St. Joseph's Healthcare Hamilton exhibit highlights abuse, violence faced by hospital staff",-0.0759,0.0645
+direction,2026-07-15,geo,4,"Fee on new homes could fall by as much as $33,787 under new city plan",-0.2202,-0.0203
+large_move,2026-03-17,oil,1,Oil prices rise as Trump presses allies to secure the Strait of Hormuz,0.5231,-0.0344
+large_move,2026-03-17,oil,2,"War on Iran Can fuel rationing, remote work, short sleeves ease oil woes?",0.4659,0.0282
+large_move,2026-03-17,oil,3,Driving the future Will the conflict in the Middle East speed up the transition to electric trucks?,0.3105,0.2836
+large_move,2026-03-17,oil,4,Meta signs $27 billion deal with Nebius for AI infrastructure,0.1983,-0.0081
+large_move,2026-03-17,oil,5,Hormuz becomes world's most expensive waterway after 300% surge in risk premiums,0.1823,0.0406
+large_move,2026-04-13,oil,1,Supply restoration could take 10 days - Fuels for Ireland,0.3413,0.3064
+large_move,2026-04-13,oil,2,"Top high-yield savings rates April 10, 2026 Up to 5.00% APY",0.2894,-0.1407
+large_move,2026-04-13,oil,3,China to resume flights to Taiwan in bid to ease tensions,0.2838,-0.0382
+large_move,2026-04-13,oil,4,'Big Short' Michael Burry Tech Stocks Even Pricier Than They Seem,0.2307,-0.0529
+large_move,2026-04-13,oil,5,Energy efficiency key to bolstering energy security Council,0.2268,0.1934
+large_move,2026-03-25,geo,1,Strait of Hormuz tensions flare as Iran tightens grip over shipping traffic,0.6497,0.3569
+large_move,2026-03-25,geo,2,Lebanon Rebukes Iran as Israel Strikes on Hezbollah Escalate,0.5582,0.2590
+large_move,2026-03-25,geo,3,Cuba readies for first Russian oil shipment of the year as energy crisis deepens,0.5540,0.2114
+large_move,2026-03-25,geo,4,Trump's Pearl Harbor Remark Strains US-Japan Relations Amid Middle East Tensions,0.5483,0.0915
+large_move,2026-03-25,geo,5,"'Unprecedented' Israel, US carry out extensive strikes across Iran US-Israel war on Iran News",0.4810,0.2946
+large_move,2025-12-10,trade,1,"S P, Nasdaq, Dow futures drift ahead of JOLTS report",0.1529,0.0691
+large_move,2025-12-10,trade,2,Cambodia vows to fight after renewed clashes with Thailand DW 12 09 2025,0.1366,0.2005
+large_move,2025-12-10,trade,3,Zelenskyy meets with Pope as Ukraine prepares to send updated peace proposals to U.S.,0.0901,-0.0890
+large_move,2025-12-10,trade,4,Merz says parts of US security strategy 'unacceptable' DW 12 09 2025,0.0529,-0.0131
+large_move,2025-12-10,trade,5,'We're living in terror' fears in southern Syria over Israel's growing occupation Syria,0.0386,0.2926
+large_move,2026-03-02,geo,1,Explosions Near Khamenei's Residence Israel-US Strikes Escalate Tensions in Tehran,0.6823,0.3553
+large_move,2026-03-02,geo,2,US and Israel launch new wave of attacks across Iran amid threat of escalation,0.5587,0.4154
+large_move,2026-03-02,geo,3,Iran targets US bases amid joint US Israel attacks,0.5355,0.1991
+large_move,2026-03-02,geo,4,Emirates Flights Disrupted Amid Middle East Airspace Closures,0.4963,0.2191
+large_move,2026-03-02,geo,5,"US Issues Security Alert as Afghanistan, Pakistan War Erupts",0.4498,0.2915
+large_move,2026-04-23,geo,1,Iran-US war latest Tehran threatens Trump's ceasefire by 'seizing cargo ships' in Strait of Hormuz after attacking vessels,0.6128,0.2983
+large_move,2026-04-23,geo,2,IRGC targets vessels in Strait of Hormuz following US ceasefire extension,0.6064,0.2039
+large_move,2026-04-23,geo,3,Iran renews attacks on ships in response to US blockade,0.5942,0.2690
+large_move,2026-04-23,geo,4,Ukraine proposes Turkey for Zelenskiy-Putin talks to restart stalled peace talks,0.5486,-0.2639
+large_move,2026-04-23,geo,5,Oil prices hold near $100 as Trump extends Iran ceasefire but keeps blockade in place,0.4856,-0.1203
+large_move,2026-03-31,oil,1,China's massive pig farms spark a supply glut as hog prices hit 8-year low,0.5790,0.0054
+large_move,2026-03-31,oil,2,Fuel price cut may ease panic buying,0.4730,-0.0321
+large_move,2026-03-31,oil,3,Trump allows sanctioned Russian oil tanker to enter Cuba despite US blockade,0.2474,0.1450
+large_move,2026-03-31,oil,4,"Buy this cruise line operator that's trading at a discount, says HSBC",0.1828,-0.1041
+large_move,2026-03-31,oil,5,The plan for cheaper fuel finding Dezi Freeman,0.1718,0.2085
+large_move,2026-01-12,oil,1,Jim Chalmers US trip Critical minerals reserve to counter China's dominance,0.2926,0.1240
+large_move,2026-01-12,oil,2,Iran government facing crisis as protests continue to grow,0.2837,0.1230
+large_move,2026-01-12,oil,3,Trump to meet with U.S. oil executives for help reviving Venezuela's oil industry,0.2789,0.1484
+large_move,2026-01-12,oil,4,Trump move for Venezuela's resources likely to weaken economic might of US Heather Stewart,0.2333,0.0788
+large_move,2026-01-12,oil,5,Louisiana shrimper praises Trump tariffs as industry lifeline,0.1870,-0.0507
+large_move,2026-07-23,oil,1,"Oil surges past $95 as U.S. downplays Iran diplomacy, Red Sea shipping disrupted",0.3817,-0.0126
+large_move,2026-07-23,oil,2,U.S.-Iran attacks continue as tensions mount on the Red Sea NPR,0.3251,0.1277
+large_move,2026-07-23,oil,3,At a glance stocks gapping up premarket SPX,0.2898,0.0172
+large_move,2026-07-23,oil,4,At a glance stocks gapping down premarket SPX,0.2882,0.0182
+large_move,2026-07-23,oil,5,Trump announces plan for 200% tariffs on imported generic drugs,0.2743,-0.0610
+large_move,2026-04-09,oil,1,"Taiwan chip industry calls for helium, LNG reserves amid Iran war risks",0.3560,0.0580
+large_move,2026-04-09,oil,2,"Iran, U.S., and Israel agree to two-week ceasefire but attacks continue",0.2382,0.1768
+large_move,2026-04-09,oil,3,Shipping companies 'see opportunities' but seek clarity on Strait of Hormuz reopening,0.2338,-0.0949
+large_move,2026-04-09,oil,4,China urges 'full end' to Iran war as more high-stakes diplomacy awaits,0.2176,-0.0187
+large_move,2026-04-09,oil,5,Asia gives cautious welcome to US-Iran ceasefire,0.2151,-0.1241

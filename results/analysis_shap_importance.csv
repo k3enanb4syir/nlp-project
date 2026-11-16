@@ -1,0 +1,67 @@
+target,encoder,family,feature,group,mean_abs_shap
+direction,glove,xgb,ret_lag1,rates,0.069224
+direction,glove,xgb,ret_lag2,rates,0.174793
+direction,glove,xgb,ret_lag3,rates,0.193589
+direction,glove,xgb,ret_lag5,rates,0.161725
+direction,glove,xgb,ret_lag10,rates,0.144577
+direction,glove,xgb,vol_5,rates,0.076011
+direction,glove,xgb,mom_5,rates,0.093866
+direction,glove,xgb,vol_10,rates,0.065441
+direction,glove,xgb,mom_10,rates,0.077682
+direction,glove,xgb,vol_21,rates,0.177007
+direction,glove,xgb,mom_21,rates,0.084377
+direction,glove,xgb,dist_ma5,rates,0.072828
+direction,glove,xgb,dist_ma10,rates,0.096944
+direction,glove,xgb,dist_ma21,rates,0.087818
+direction,glove,xgb,dow,rates,0.128092
+direction,glove,xgb,prev_direction,rates,0.000000
+direction,glove,xgb,ax_dollar_dir,channel direction,0.109419
+direction,glove,xgb,ax_dollar_attn,channel attention,0.075965
+direction,glove,xgb,ax_risk_dir,channel direction,0.085257
+direction,glove,xgb,ax_risk_attn,channel attention,0.090859
+direction,glove,xgb,ax_fed_dir,channel direction,0.096260
+direction,glove,xgb,ax_fed_attn,channel attention,0.100327
+direction,glove,xgb,ax_geo_dir,channel direction,0.081102
+direction,glove,xgb,ax_geo_attn,channel attention,0.123986
+direction,glove,xgb,ax_oil_dir,channel direction,0.122192
+direction,glove,xgb,ax_oil_attn,channel attention,0.096625
+direction,glove,xgb,ax_em_dir,channel direction,0.061166
+direction,glove,xgb,ax_em_attn,channel attention,0.151460
+direction,glove,xgb,ax_trade_dir,channel direction,0.068379
+direction,glove,xgb,ax_trade_attn,channel attention,0.171196
+direction,glove,xgb,nov_headline,novelty,0.126825
+direction,glove,xgb,nov_centroid,novelty,0.183913
+direction,glove,xgb,concentration,novelty,0.084816
+large_move,fasttext,xgb,ret_lag1,rates,0.090574
+large_move,fasttext,xgb,ret_lag2,rates,0.026414
+large_move,fasttext,xgb,ret_lag3,rates,0.073711
+large_move,fasttext,xgb,ret_lag5,rates,0.085282
+large_move,fasttext,xgb,ret_lag10,rates,0.137691
+large_move,fasttext,xgb,vol_5,rates,0.020223
+large_move,fasttext,xgb,mom_5,rates,0.007012
+large_move,fasttext,xgb,vol_10,rates,0.229984
+large_move,fasttext,xgb,mom_10,rates,0.032001
+large_move,fasttext,xgb,vol_21,rates,0.081390
+large_move,fasttext,xgb,mom_21,rates,0.111975
+large_move,fasttext,xgb,dist_ma5,rates,0.055922
+large_move,fasttext,xgb,dist_ma10,rates,0.002914
+large_move,fasttext,xgb,dist_ma21,rates,0.136823
+large_move,fasttext,xgb,dow,rates,0.060918
+large_move,fasttext,xgb,prev_direction,rates,0.000000
+large_move,fasttext,xgb,ax_dollar_dir,channel direction,0.025195
+large_move,fasttext,xgb,ax_dollar_attn,channel attention,0.056622
+large_move,fasttext,xgb,ax_risk_dir,channel direction,0.052245
+large_move,fasttext,xgb,ax_risk_attn,channel attention,0.033095
+large_move,fasttext,xgb,ax_fed_dir,channel direction,0.034479
+large_move,fasttext,xgb,ax_fed_attn,channel attention,0.073811
+large_move,fasttext,xgb,ax_geo_dir,channel direction,0.067301
+large_move,fasttext,xgb,ax_geo_attn,channel attention,0.086318
+large_move,fasttext,xgb,ax_oil_dir,channel direction,0.179969
+large_move,fasttext,xgb,ax_oil_attn,channel attention,0.065905
+large_move,fasttext,xgb,ax_em_dir,channel direction,0.083677
+large_move,fasttext,xgb,ax_em_attn,channel attention,0.066511
+large_move,fasttext,xgb,ax_trade_dir,channel direction,0.135886
+large_move,fasttext,xgb,ax_trade_attn,channel attention,0.035072
+large_move,fasttext,xgb,nov_headline,novelty,0.195620
+large_move,fasttext,xgb,nov_centroid,novelty,0.074688
+large_move,fasttext,xgb,concentration,novelty,0.131813
