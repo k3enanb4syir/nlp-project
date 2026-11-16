@@ -1,0 +1,33 @@
+target,model,encoder,n_features,decay_halflife,params,val_f1_macro
+direction,A_rates_logreg,-,16,0,"{""C"": 10.0}",0.5115109170305676
+direction,A_rates_xgb,-,16,0,"{""n_estimators"": 400, ""max_depth"": 3, ""learning_rate"": 0.03}",0.553030303030303
+direction,B_lexicon_logreg,-,47,0,"{""C"": 0.01}",0.508460346163782
+direction,B_lexicon_xgb,-,47,0,"{""n_estimators"": 200, ""max_depth"": 2, ""learning_rate"": 0.05}",0.5057792207792208
+direction,early_logreg_glove,glove,33,1,"{""C"": 1.0}",0.5548320413436693
+direction,early_xgb_glove,glove,33,1,"{""n_estimators"": 150, ""max_depth"": 4, ""learning_rate"": 0.1}",0.576984776559175
+direction,text_only_logreg_glove,glove,17,3,"{""C"": 10.0}",0.4971074521617088
+direction,early_logreg_fasttext,fasttext,33,1,"{""C"": 1.0}",0.5502722323049002
+direction,early_xgb_fasttext,fasttext,33,2,"{""n_estimators"": 150, ""max_depth"": 4, ""learning_rate"": 0.1}",0.5653953183827141
+direction,text_only_logreg_fasttext,fasttext,17,0,"{""C"": 1.0}",0.5131077453352335
+direction,early_logreg_finbert,finbert,37,0,"{""C"": 10.0}",0.5155540720961281
+direction,early_xgb_finbert,finbert,37,5,"{""n_estimators"": 150, ""max_depth"": 4, ""learning_rate"": 0.1}",0.5422164020297922
+direction,text_only_logreg_finbert,finbert,21,3,"{""C"": 0.1}",0.4662692847124825
+direction,early_logreg_sbert,sbert,33,0,"{""C"": 0.01}",0.5461991809010089
+direction,early_xgb_sbert,sbert,33,3,"{""n_estimators"": 150, ""max_depth"": 4, ""learning_rate"": 0.1}",0.578028350515464
+direction,text_only_logreg_sbert,sbert,17,5,"{""C"": 1.0}",0.4926289926289926
+large_move,A_rates_logreg,-,16,0,"{""C"": 0.01}",0.5159186535764375
+large_move,A_rates_xgb,-,16,0,"{""n_estimators"": 200, ""max_depth"": 2, ""learning_rate"": 0.05}",0.577923076923077
+large_move,B_lexicon_logreg,-,47,0,"{""C"": 0.1}",0.5061121445655062
+large_move,B_lexicon_xgb,-,47,0,"{""n_estimators"": 200, ""max_depth"": 2, ""learning_rate"": 0.05}",0.5212593313859136
+large_move,early_logreg_glove,glove,33,5,"{""C"": 10.0}",0.5512170385395538
+large_move,early_xgb_glove,glove,33,5,"{""n_estimators"": 400, ""max_depth"": 3, ""learning_rate"": 0.03}",0.5559258565811647
+large_move,text_only_logreg_glove,glove,17,5,"{""C"": 10.0}",0.5362445414847161
+large_move,early_logreg_fasttext,fasttext,33,2,"{""C"": 0.1}",0.5462763086886131
+large_move,early_xgb_fasttext,fasttext,33,2,"{""n_estimators"": 400, ""max_depth"": 3, ""learning_rate"": 0.03}",0.5913200015653739
+large_move,text_only_logreg_fasttext,fasttext,17,3,"{""C"": 10.0}",0.520940170940171
+large_move,early_logreg_finbert,finbert,37,5,"{""C"": 10.0}",0.5234615384615384
+large_move,early_xgb_finbert,finbert,37,2,"{""n_estimators"": 400, ""max_depth"": 3, ""learning_rate"": 0.03}",0.5506923076923077
+large_move,text_only_logreg_finbert,finbert,21,5,"{""C"": 10.0}",0.4865420629383469
+large_move,early_logreg_sbert,sbert,33,3,"{""C"": 10.0}",0.4976348155156102
+large_move,early_xgb_sbert,sbert,33,3,"{""n_estimators"": 400, ""max_depth"": 3, ""learning_rate"": 0.03}",0.5340896452007563
+large_move,text_only_logreg_sbert,sbert,17,5,"{""C"": 10.0}",0.4992683640620427

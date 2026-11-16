@@ -132,3 +132,27 @@ NOVELTY_LOOKBACK_SESSIONS = 5
 NOVELTY_MEMORY_HALFLIFE = 2.0
 # Anchor split-half reliability: number of random 5-vs-5 splits.
 SPLIT_HALF_REPEATS = 50
+
+
+# --------------------------------------------------------------------------
+# Task 3 -- early and gated late fusion (src/fusion.py)
+# --------------------------------------------------------------------------
+# Primary target is next-session direction (as in Task 2). The secondary
+# target flags a large move: |log return| above this quantile of TRAINING
+# returns, so the threshold never sees validation or test data.
+FUSION_TARGETS = ("direction", "large_move")
+LARGE_MOVE_QUANTILE = 0.75
+# Half-life grid (sessions) for exponential decay of the channel-axis scores,
+# chosen on validation together with each model's own hyperparameters.
+# 0 = no decay (today's session only).
+DECAY_HALFLIVES = (0, 1, 2, 3, 5)
+# The late-fusion gate g: standardised semantic novelty of the session.
+GATE_FEATURE = "nov_centroid"
+# Regularisation of the 3-4 parameter meta-model fitted on validation logits.
+# Fixed rather than tuned: the validation block is already used to fit it.
+META_C = 1.0
+
+FUSION_METRICS_CSV = RESULTS_DIR / "fusion_metrics.csv"
+FUSION_SELECTED_CSV = RESULTS_DIR / "fusion_selected.csv"
+FUSION_GATE_CSV = RESULTS_DIR / "fusion_gate.csv"
+FUSION_PREDICTIONS_CSV = RESULTS_DIR / "fusion_test_predictions.csv"
