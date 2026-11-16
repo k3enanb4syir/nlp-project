@@ -22,9 +22,11 @@ sentence-transformers>=3.0
 gensim>=4.3.3
 
 # Modelling & evaluation
-scikit-learn>=1.5
+# Pinned: XGBoost trees (and so every tree model's metrics) change between
+# versions. These are the versions that produced the committed results.
+scikit-learn==1.9.1
 statsmodels>=0.14
-xgboost>=2.1
+xgboost==3.4.1
 
 # EDA / notebooks
 matplotlib>=3.9
