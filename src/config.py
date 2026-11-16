@@ -156,3 +156,18 @@ FUSION_METRICS_CSV = RESULTS_DIR / "fusion_metrics.csv"
 FUSION_SELECTED_CSV = RESULTS_DIR / "fusion_selected.csv"
 FUSION_GATE_CSV = RESULTS_DIR / "fusion_gate.csv"
 FUSION_PREDICTIONS_CSV = RESULTS_DIR / "fusion_test_predictions.csv"
+# Task 3 -- ablation matrix (src/ablation.py, notebook/03_ablation.ipynb)
+# --------------------------------------------------------------------------
+# C-raw control: session-mean raw embeddings reduced by PCA fitted on
+# training sessions only. RAW_PCA_COMPONENTS are saved; the number actually
+# used (a prefix of them) is chosen on validation from RAW_PCA_K_GRID.
+RAW_PCA_COMPONENTS = 32
+RAW_PCA_K_GRID = (4, 8, 16, 32)
+# Circular block bootstrap of the test block for CIs on MCC(model) - MCC(A).
+# Blocks of 10 sessions (two trading weeks) keep short-range dependence intact.
+BOOTSTRAP_BLOCK = 10
+BOOTSTRAP_REPS = 2000
+
+ABLATION_METRICS_CSV = RESULTS_DIR / "ablation_metrics.csv"
+ABLATION_BOOTSTRAP_CSV = RESULTS_DIR / "ablation_bootstrap.csv"
+ABLATION_PREDICTIONS_CSV = RESULTS_DIR / "ablation_test_predictions.csv"

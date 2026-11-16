@@ -550,12 +550,229 @@ print(rate_up.round(3).to_string())
     return nb
 
 
+def build_ablation() -> nbf.NotebookNode:
+    cells = [
+        md("""
+# Task 3 -- Ablation matrix
+
+Each row adds or removes one kind of information relative to its neighbour,
+so a change in score can be attributed. The rows are fitted by
+`src/ablation.py`; run it first to produce the `results/ablation_*.csv` files.
+
+    python src/ablation.py --build-raw   # once; needs data/embeddings/ (C-raw only)
+    python src/ablation.py
+
+| Row | Features | Question |
+|---|---|---|
+| A | rates only | time-series baseline |
+| B | rates + Task 2 lexicons | does basic NLP help? |
+| C1 / C2 | rates + GloVe / FastText axes | static embeddings |
+| C3 / C4 | rates + FinBERT / SBERT axes | contextual; domain vs general |
+| C-fbs | rates + FinBERT sentiment | why not just FinBERT sentiment? |
+| C-raw | rates + PCA of raw embeddings (best encoder) | do axes beat dumping vectors? |
+| C5 | best C + novelty and concentration | does news surprise add signal? |
+| C6 / C6-stack | late fusion with / without the novelty gate | fusion strategy |
+| drop-* | C5 minus one channel | which channel matters |
+
+**Selection.** Every row picks its model family (logistic regression or
+XGBoost), hyperparameters and decay half-life on validation macro-F1. "Best
+encoder" is the C1-C4 row with the best validation macro-F1, so it can differ
+by target. The test block is scored once.
+
+**Uncertainty.** With 176 test days a 0.02 MCC change is noise. Every row
+reports MCC(row) - MCC(A) with a 95% circular block-bootstrap CI (10-session
+blocks, 2,000 resamples, both models scored on the same resampled days).
+        """),
+        code(BOOTSTRAP),
+        code("""
+from anchors import CHANNELS
+
+metrics = pd.read_csv(config.ABLATION_METRICS_CSV)
+boot = pd.read_csv(config.ABLATION_BOOTSTRAP_CSV)
+TARGETS = ["direction", "large_move"]
+ORDER = (["A", "B", "C1", "C2", "C3", "C4", "C-fbs", "C-raw", "C5", "C6", "C6-stack"]
+         + [f"drop-{c}" for c in CHANNELS])
+print(f"{metrics.row.nunique()} rows x {metrics.target.nunique()} targets")
+        """),
+
+        md("## 1. The matrix (test block)"),
+        code("""
+cols = ["description", "encoder", "family", "decay_halflife", "accuracy", "f1_macro",
+        "mcc", "roc_auc", "d_mcc", "ci_low", "ci_high", "p_gt0"]
+
+def matrix(target):
+    t = metrics[(metrics.target == target) & (metrics.split == "test")]
+    t = t.merge(boot[boot.target == target], on=["target", "row"]).set_index("row")
+    return t.reindex([r for r in ORDER if r in t.index])[cols].round(3)
+
+matrix("direction")
+        """),
+        code('matrix("large_move")'),
+
+        md("""
+## 2. MCC difference against Model A
+
+A dot right of zero beats the rates-only baseline on the test block. The bar is
+the 95% block-bootstrap CI of that difference; a bar that crosses zero is not
+distinguishable from no effect.
+        """),
+        code("""
+fig, axes = plt.subplots(1, 2, figsize=(11, 7), sharey=True)
+rows = [r for r in ORDER if r != "A"]
+ypos = {r: len(rows) - 1 - i for i, r in enumerate(rows)}
+for ax, target in zip(axes, TARGETS):
+    b = boot[(boot.target == target) & boot.row.isin(rows)]
+    y = b.row.map(ypos)
+    ax.errorbar(b.d_mcc, y, xerr=[b.d_mcc - b.ci_low, b.ci_high - b.d_mcc],
+                fmt="o", color=viz.BLUE, ecolor=viz.BLUE, elinewidth=1.5,
+                markersize=6, capsize=0)
+    ax.axvline(0, color=viz.TEXT_SECONDARY, lw=1)
+    for edge in ("C1", "C5", f"drop-{CHANNELS[0]}"):   # group separators
+        ax.axhline(ypos[edge] + 0.5, color=viz.GRID, lw=1)
+    ax.set_title(target)
+    ax.set_xlabel("test MCC minus Model A's")
+    ax.grid(axis="y", visible=False)
+axes[0].set_yticks(list(ypos.values()), list(ypos.keys()))
+fig.suptitle("Difference in test MCC vs Model A, with 95% block-bootstrap CI", x=0.01, ha="left")
+plt.tight_layout()
+plt.show()
+        """),
+
+        md("""
+## 3. Does validation predict test?
+
+Every choice in the matrix (encoder, family, half-life) is made on validation.
+If validation and test scores are unrelated, those choices are close to random.
+Late-fusion rows are left out because their meta-model is fitted on
+validation, so their validation scores are in-sample.
+        """),
+        code("""
+v = metrics[metrics.split == "validation"]
+t = metrics[metrics.split == "test"]
+m = v.merge(t, on=["target", "row"], suffixes=("_val", "_test"))
+m = m[~m.val_in_sample_val]
+
+fig, ax = plt.subplots(figsize=(6.6, 5.2))
+for target, color in zip(TARGETS, [viz.BLUE, viz.ORANGE]):
+    s = m[m.target == target]
+    r = s[["mcc_val", "mcc_test"]].corr().iloc[0, 1]
+    ax.scatter(s.mcc_val, s.mcc_test, s=40, color=color,
+               edgecolor=viz.SURFACE, linewidth=1.5, label=f"{target} (r = {r:+.2f})")
+ax.axhline(0, color=viz.TEXT_SECONDARY, lw=1)
+ax.axvline(0, color=viz.TEXT_SECONDARY, lw=1)
+ax.set_xlabel("validation MCC")
+ax.set_ylabel("test MCC")
+ax.set_title("Validation MCC vs test MCC, one dot per ablation row")
+ax.legend(loc="lower right")
+plt.tight_layout()
+plt.show()
+        """),
+        code("""
+# What validation chose, per target.
+sel = (metrics[(metrics.split == "test") & metrics.row.isin(["A", "C1", "C2", "C3", "C4", "C5"])]
+       [["target", "row", "encoder", "family", "decay_halflife", "params", "n_features"]])
+sel.sort_values(["target", "row"]).reset_index(drop=True)
+        """),
+
+        md("""
+## 4. Which channel matters? (drop-one)
+
+Change in test MCC when one channel's direction and attention scores are
+removed from C5. A negative bar means the model got worse without the channel,
+i.e. the channel was helping.
+        """),
+        code("""
+fig, axes = plt.subplots(1, 2, figsize=(10, 3.8), sharey=True)
+for ax, target in zip(axes, TARGETS):
+    t = metrics[(metrics.target == target) & (metrics.split == "test")].set_index("row")
+    d = pd.Series({c: t.loc[f"drop-{c}", "mcc"] - t.loc["C5", "mcc"] for c in CHANNELS})
+    ax.barh(list(d.index)[::-1], d.values[::-1], height=0.62,
+            color=[viz.COLOR_DOWN if x < 0 else viz.COLOR_UP for x in d.values[::-1]])
+    ax.axvline(0, color=viz.TEXT_SECONDARY, lw=1)
+    ax.set_title(f"{target} (C5 on {t.loc['C5', 'encoder']})")
+    ax.set_xlabel("test MCC without the channel minus C5's")
+    ax.grid(axis="y", visible=False)
+plt.tight_layout()
+plt.show()
+        """),
+
+        md("""
+## 5. Findings
+
+1. **No text row beats Model A on direction with a CI that excludes zero.** The
+   largest gain is C4 (SBERT axes, +0.112, CI −0.044 to +0.279, ahead of A in
+   91% of resamples). Validation picked GloVe as the best encoder for
+   direction, so C5, C6 and the drop-one rows are built on GloVe. Of those,
+   only drop-trade is ahead of A (+0.075, CI −0.089 to +0.256).
+
+2. **For direction, validation does not predict test; for large moves, it
+   does.** Across ablation rows, validation and test MCC correlate at
+   r = +0.10 for direction and r = +0.78 for large moves (section 3). So the
+   validation-based choices are close to random for direction, while the
+   large-move results are more trustworthy.
+
+3. **Large moves are where text looks most useful.** Every C1–C4 row is ahead
+   of A in at least 71% of resamples, and C2 (FastText) gains +0.105 (CI
+   −0.042 to +0.241). Model A itself is close to zero (MCC 0.010). This fits the
+   literature: news predicts magnitude better than sign.
+
+4. **Axes beat raw embeddings, but within noise.** For the encoder validation
+   picked, the axes row is ahead of C-raw on both targets (direction +0.046 vs
+   −0.052; large move +0.105 vs +0.074), with 17 or fewer interpretable
+   features against up to 32 opaque ones.
+
+5. **Novelty and the gate add nothing reliable.** C5 is below its best C on
+   both targets. The gated C6 beats the ungated C6-stack on direction and loses
+   on large moves.
+
+6. **FinBERT sentiment is no better than the axes.** C-fbs is −0.042
+   (direction) and +0.046 (large move), never ahead of the best axes row.
+
+7. **Drop-one finds no channel that clearly carries the signal.** For
+   direction, removing any one of the seven GloVe channels *raises* test MCC.
+   For large moves (FastText), removing em or geo lowers it, and four others
+   raise it. The single CI that excludes
+   zero in the whole matrix is drop-trade on large moves (+0.131, CI +0.008 to
+   +0.258): 1 of 34 comparisons, about what chance alone would give at the 95%
+   level.
+
+**Bottom line for the report.** The channel-axis features are a defensible,
+interpretable representation, and the large-move target shows a consistent
+positive tilt. But with 176 test days, no fusion or feature set is
+statistically distinguishable from the rates-only baseline. Report it in
+those words.
+        """),
+    ]
+
+    nb = nbf.v4.new_notebook(cells=cells)
+    nb.metadata = {
+        "kernelspec": {"display_name": "Python 3", "language": "python",
+                       "name": "python3"},
+        "language_info": {"name": "python"},
+    }
+    return nb
+
+
+NOTEBOOKS = {
+    "01": ("01_eda.ipynb", build_eda),
+    "02": ("02_baseline_results.ipynb", build_results),
+    "03": ("03_ablation.ipynb", build_ablation),
+}
+
+
 def main() -> None:
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Regenerate the project notebooks.")
+    parser.add_argument("--only", nargs="+", choices=sorted(NOTEBOOKS),
+                        help="regenerate only these notebooks (default: all)")
+    args = parser.parse_args()
+
     NB_DIR.mkdir(parents=True, exist_ok=True)
-    for name, nb in (("01_eda.ipynb", build_eda()),
-                     ("02_baseline_results.ipynb", build_results())):
+    for key in args.only or sorted(NOTEBOOKS):
+        name, builder = NOTEBOOKS[key]
         path = NB_DIR / name
-        nbf.write(nb, path)
+        nbf.write(builder(), path)
         print(f"wrote {path}")
 
 
